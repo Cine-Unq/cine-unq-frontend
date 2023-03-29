@@ -14,7 +14,7 @@ export default function Login() {
     return (
         <Container>
             <div style={styles.margin_top_height_login}></div>
-             <Row >
+            <Row >
                 <Col>
                     <Logo></Logo>
                 </Col>
@@ -24,4 +24,4 @@ export default function Login() {
             </Row>
         </Container>
     )
-};
+}

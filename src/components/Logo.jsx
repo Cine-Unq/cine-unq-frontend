@@ -1,5 +1,5 @@
 import logocine from '../imagenes/logocine.png'
-
+import React from 'react';
 const styles = {
     size_logo: {
         "width": "350px", "height": "350px"
@@ -8,7 +8,7 @@ const styles = {
 export default function Logo() {
     return (
         <div className="d-flex justify-content-center">
-            <img src={logocine} className="App-logo" alt="logo" style={styles.size_logo}/>
+            <img src={logocine} className="App-logo" alt="logo" style={styles.size_logo} />
         </div>
     )
 }

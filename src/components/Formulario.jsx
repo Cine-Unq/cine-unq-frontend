@@ -7,13 +7,15 @@ import Col from 'react-bootstrap/Col'
 import { loginUser } from '../services/UsuarioService'
 const styles = {
     font_color_title: {
-        "color" : "#EBB454", "fontSize": "30px"
+        "color": "#EBB454",
+        "fontSize": "30px"
     },
     font_color_label: {
-        "color" : "#EBB454"
+        "color": "#EBB454"
     },
     button_session: {
-        "width": '100%', "background":"#EBB454"
+        "width": '100%',
+        "background": "#EBB454"
     },
     text_create_account: {
         "color": "white",
@@ -26,8 +28,8 @@ const styles = {
     }
 }
 export default function Formulario() {
-    const [username,setUsername] = useState(null);
-    const [password,setPassword] = useState(null);
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
 
     const handleChangeUserName = event => {
         setUsername(() => event.target.value);
@@ -39,8 +41,8 @@ export default function Formulario() {
 
     const login = () => {
         loginUser(username, password)
-        .then(res => console.log(res)) 
-        .catch(err => console.log(err)) 
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
     return (
         <Container>
@@ -66,14 +68,14 @@ export default function Formulario() {
                         <p></p>
                         <p style={styles.text_create_account}>
                             ¿Todavia no tenes cuenta?
-                            <a href="/" style={styles.link_create_account}> 
+                            <a href="/" style={styles.link_create_account}>
                                 Crea una ahora
                             </a>
                         </p>
-                        
+
                     </Form>
                 </Col>
             </Row>
         </Container>
     )
-};
+}
