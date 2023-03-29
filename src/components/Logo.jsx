@@ -1,5 +1,4 @@
 import logocine from '../imagenes/logocine.png'
-import React from 'react';
 const styles = {
     size_logo: {
         "width": "350px", "height": "350px"
