@@ -6,7 +6,7 @@ export default function MoviePage() {
     return (
         <Container fluid style={{padding:0, margin:0}}>
             <NavBar></NavBar>
-            <Movie></Movie>
+            <Movie movieId={2} ></Movie>
         </Container>
     )
 }
