@@ -1,4 +1,4 @@
-import logocine from '../imagenes/logocine.png'
+import logocine from '../assets/logocine.png'
 const styles = {
     size_logo: {
         "width": "350px", "height": "350px"

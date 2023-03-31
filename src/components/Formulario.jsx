@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { loginUser } from '../services/UsuarioService'
+import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { loginUser } from '../services/UsuarioService';
+import { Navigate } from "react-router-dom";
+
 const styles = {
     font_color_title: {
         "color": "#EBB454",
@@ -30,6 +32,7 @@ const styles = {
 export default function Formulario() {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    const [logged, setLogged] = useState(false);
 
     const handleChangeUserName = event => {
         setUsername(() => event.target.value);
@@ -41,13 +44,16 @@ export default function Formulario() {
 
     const login = () => {
         loginUser(username, password)
-            .then(res => console.log(res))
+            .then(() => setLogged(true))
             .catch(err => console.log(err))
     }
     return (
         <Container>
             <Row className="justify-content-md-start">
                 <Col className="col-md-7">
+                    {logged && (
+                        <Navigate to="/movie/info" replace={true} />
+                    )}
                     <Form>
                         <Form.Group>
                             <Form.Label style={styles.font_color_title}>Bienvenido de vuelta</Form.Label>
@@ -72,7 +78,6 @@ export default function Formulario() {
                                 Crea una ahora
                             </a>
                         </p>
-
                     </Form>
                 </Col>
             </Row>
