@@ -1,4 +1,4 @@
-import Formulario from '../components/Formulario';
+import Formulario from '../components/FormLogin';
 import Logo from '../components/Logo';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -10,7 +10,7 @@ const styles = {
         "height": "11rem"
     }
 }
-export default function Login() {
+export default function FormLogin() {
     return (
         <Container>
             <div style={styles.margin_top_height_login}></div>
