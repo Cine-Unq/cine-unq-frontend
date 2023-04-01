@@ -12,7 +12,9 @@ export default function Movie(props) {
     const [navigate, setNavigate] = useState(null);
     useEffect(()=>{
         getMovieById(props.movieId)
-            .then(data => setMovie(data))
+            .then(data => {
+                setMovie(data)
+            })
             .catch(err => console.log(err))
             
     },[]);
