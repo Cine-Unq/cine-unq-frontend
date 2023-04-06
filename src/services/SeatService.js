@@ -6,22 +6,26 @@ const getSeatsFromMovie = (id) => {
             res =>
                 res.json()
         )
-        .catch(err => console.log(err))
-    // const res = [	
-    //     {
-    //         "id": 1,
-    //         "estaOcupado": false,
-    //         "columna": "A",
-    //         "fila": "1"
-    //     },
-    //     {
-    //         "id": 2,
-    //         "estaOcupado": false,
-    //         "columna": "A",
-    //         "fila": "2"
-    //     }
-    // ]
-    // return Promise.resolve(res);
+        .catch(err => console.log(err));
 }
 
-export { getSeatsFromMovie }; 
+const generatePurchase = (data) => {    
+    if (!data || data.length == 0) {
+        return Promise.reject("Para generar la compra debe seleccionar al menos 1 asiento");
+    }
+    const purchase = {
+        idCliente: 1,
+        idsAsientosComprados: data.map(data => data.id),
+        idPelicula: 1
+    }
+    return fetch(`${API}/compra`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(purchase)
+    })
+        .then(res => res.json());
+}
+
+export { getSeatsFromMovie, generatePurchase }; 
