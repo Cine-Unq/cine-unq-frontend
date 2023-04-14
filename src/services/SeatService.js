@@ -28,4 +28,12 @@ const generatePurchase = (data) => {
         .then(res => res.json());
 }
 
-export { getSeatsFromMovie, generatePurchase }; 
+const getPurchase = (id) => {
+    return fetch(`${API}/compra/${id}`)
+        .then(
+            res =>
+                res.json()
+        )
+        
+}
+export { getSeatsFromMovie, generatePurchase, getPurchase }; 

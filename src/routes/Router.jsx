@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         element: <SeatPage/>
     },
     {
-        path: "/movie/purchase/qr",
+        path: "/movie/purchase/qr/:idCompra",
         element: <QRPage/>
     }
 ]);

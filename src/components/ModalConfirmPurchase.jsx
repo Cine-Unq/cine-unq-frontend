@@ -7,12 +7,14 @@ import Alert from 'react-bootstrap/Alert';
 
 
 export default function ModalConfirmPurchase({ onClose, seats }) {
-    const [navigate, setNavigate]  = useState(false);
+    const [purchase, setPurchase]  = useState(false);
     const [error, setError] = useState(false);
 
     const handlePurchase = () => {
         generatePurchase(seats)
-            .then(() => setNavigate(true))
+            .then(res => {
+                setPurchase(res)
+            })
             .catch(err => {
                 setError(err)
             })
@@ -20,7 +22,7 @@ export default function ModalConfirmPurchase({ onClose, seats }) {
 
     return (
         <>
-            {navigate && <Navigate to="/movie/purchase/qr" replace={true}/>}
+            {purchase && <Navigate to={`/movie/purchase/qr/${purchase.id}`} replace={true}/>}
             <Modal show={true} onHide={onClose}>
                 {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
                 <Modal.Header>
