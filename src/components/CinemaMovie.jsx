@@ -1,17 +1,14 @@
 import "../css/Cinema.css";
 import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
 import ShowCase from "./Showcase";
 import Cinema from "./Cinema";
-import { getSeatsFromMovie, generatePurchase } from '../services/SeatService';
-import { Navigate } from 'react-router-dom';
-
+import { getSeatsFromMovie } from '../services/SeatService';
+import ModalConfirmPurchase from "./ModalConfirmPurchase";
 export default function CinemaMovie() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seats, setSeats] = useState([]);
-    const [navigate, setNavigate]  = useState(false);
-    const [error, setError] = useState(false);
+    const [modal, setModal] = useState(false);
     useEffect(()=>{
         getSeatsFromMovie(1)
             .then(data => {
@@ -20,15 +17,12 @@ export default function CinemaMovie() {
             .catch(err => console.log(err))
     }, []);
 
-    const handlePurchase = () => {
-        generatePurchase(selectedSeats)
-            .then(() => setNavigate(true))
-            .catch(err => setError(err))
+    const handleModal = () => {
+        setModal(true);
     }
     return (
         <div className="App">
-            {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
-            {navigate && <Navigate to="/movie/purchase/qr" replace={true}/>}
+            {modal ? <ModalConfirmPurchase seats={selectedSeats} onClose={()=> setModal(false)}/>: <></>}
             <ShowCase />
             <Cinema
                 selectedSeats={selectedSeats}
@@ -37,13 +31,13 @@ export default function CinemaMovie() {
                 }
                 seats={seats}
             />
-            <p className="info">
+            <p className="info" style={{color: 'white'}}>
                 Has seleccionado <span className="count">{selectedSeats.length}</span> asientos.
             </p>
-            <ul>
-                {selectedSeats.map((selected)=> (<li key={selected.id + selected.fila} >Silla columna {selected.columna} y fila {selected.fila} </li>))}
+            <ul style={{color: 'white', padding: 10}}>
+                {selectedSeats.map((selected)=> (<li key={selected.id + selected.fila}>Silla columna {selected.columna} y fila {selected.fila} </li>))}
             </ul>
-            <Button variant="secondary" size="lg" onClick={handlePurchase}>
+            <Button variant="primary" size="lg" onClick={handleModal}>
                 Comprar asientos
             </Button>
         </div>

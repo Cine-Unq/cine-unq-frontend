@@ -45,7 +45,7 @@ export default function Movie(props) {
                     </Row>
                     <Row className="justify-content-md-center">
                         <Col xs='auto' sm='auto' md='auto' >
-                            <Button variant="secondary" size="lg" onClick={displaySeats}>
+                            <Button variant="primary" size="lg" onClick={displaySeats}>
                                 Ver asientos disponibles
                             </Button>
                         </Col>
