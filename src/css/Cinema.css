@@ -52,25 +52,25 @@
 }
 
 .Cinema .screen {
-  height: 70px;
+  height: 100px;
   background: white;
   width: 100%;
-  transform: rotateX(-30deg) scale(1.1);
+  transform: rotateX(-15deg) scale(1.1);
   box-shadow: 0 3px 10px 2px;
 }
 
 .Cinema .seats {
   display: grid;
   grid-gap: 6px;
-  grid-template-columns: repeat(8, min-content);
+  grid-template-columns: repeat(14, min-content);
   align-items: center;
 }
 
-.Cinema .seats .seat:nth-of-type(8n + 2) {
+.Cinema .seats .seat:nth-of-type(14n + 3) {
   margin-right: 12px;
 }
 
-.Cinema .seats .seat:nth-of-type(8n + 6) {
+.Cinema .seats .seat:nth-of-type(14n + 11) {
   margin-right: 12px;
 }
 
@@ -110,9 +110,9 @@
 
 .seat {
   display: inline-block;
-  background: #626262;
-  width: 16px;
-  height: 12px;
+  background: #fbf6f6;
+  width: 22px;
+  height: 18px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   transition: transform 0.3s ease-in-out;
@@ -126,7 +126,7 @@
 }
 
 .seat.occupied {
-  background: #cfcfcf;
+  background: #d61e1e;
 }
 
 .info .count {
