@@ -136,3 +136,7 @@
 .info .total {
   color: #7bc47f;
 }
+
+.list-time-function a{
+  padding-right: 20px;
+}

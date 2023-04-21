@@ -16,6 +16,8 @@ export default function ListMovie() {
     }) 
     return (
         <Container className='mt-4'>
+            <h1 style={{color: '#4bbad8'}}>Cartelera</h1>
+            <p></p>
             <Row md={3} xs={1} lg={4} className="g-4">
                 {
                     movies.map(movie => 
