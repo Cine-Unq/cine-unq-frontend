@@ -25,8 +25,10 @@ export default function MovieInfo() {
             { movie &&
                 (<Container fluid='sm'>
                     <Row className="justify-content-md-center">
-                        <Col xs='auto' md={3} >
-                            <Image fluid={true} rounded={true} src={movie.imagen}></Image>
+                        <Col md={8} >
+                            <div style={{display: 'flex'}} className="justify-content-md-center">
+                                <Image fluid={true} rounded={true} src={movie.imagen}></Image>
+                            </div>
                         </Col>
                     </Row>
                     <p></p>
@@ -40,8 +42,8 @@ export default function MovieInfo() {
                             <p style={{ color: '#FFFFFF' }}>{movie.descripcion}</p>
                         </Col>
                     </Row>
-                    <Row className="justify-content-md-center mt-4" >
-                        <Col xs={1} md={4}>
+                    <Row className="justify-content-md-center" >
+                        <Col  md={8}>
                             <h3 style={{ color:'#EBB454' }}>Funciones disponibles</h3>
                             <FunctionAvailable movieId={idMovie} ></FunctionAvailable>
                         </Col>
