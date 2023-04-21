@@ -52,7 +52,7 @@ export default function Formulario() {
             <Row className="justify-content-md-start">
                 <Col className="col-md-7">
                     {logged && (
-                        <Navigate to="/movie/info" replace={true} />
+                        <Navigate to="/billboard/movies" replace={true} />
                     )}
                     <Form>
                         <Form.Group>

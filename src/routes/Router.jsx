@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import MoviePage from "../pages/MoviePage";
 import SeatPage from "../pages/SeatPage";
 import QRPage from "../pages/QRPage";
+import BillboardCine from "../pages/BillboardCine";
 
 const router = createBrowserRouter([
     {
@@ -10,7 +11,7 @@ const router = createBrowserRouter([
         element: <Login/>,
     },
     {
-        path: "/movie/info",
+        path: "/movie/info/:idMovie",
         element: <MoviePage/>
     },
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: "/movie/purchase/qr/:idCompra",
         element: <QRPage/>
+    },
+    {
+        path: "/billboard/movies",
+        element: <BillboardCine/>
     }
 ]);
 

@@ -5,13 +5,15 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { getMovieById } from '../services/MovieService';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
-export default function Movie(props) {
+export default function MovieInfo() {
     const [movie, setMovie] = useState(null);
     const [navigate, setNavigate] = useState(null);
+    const { idMovie }= useParams();
+
     useEffect(()=>{
-        getMovieById(props.movieId)
+        getMovieById(idMovie)
             .then(data => {
                 setMovie(data)
             })

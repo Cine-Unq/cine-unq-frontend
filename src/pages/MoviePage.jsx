@@ -1,12 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import NavBar from '../components/NavBar';
-import Movie from '../components/Movie';
+import MovieInfo from '../components/MovieInfo';
 
 export default function MoviePage() {
     return (
         <Container fluid style={{padding:0, margin:0}}>
             <NavBar></NavBar>
-            <Movie movieId={1} ></Movie>
+            <MovieInfo ></MovieInfo>
         </Container>
     )
 }

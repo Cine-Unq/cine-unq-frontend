@@ -9,4 +9,12 @@ const getMovieById = (id) => {
         .catch(err => err)
 }
 
-export { getMovieById }; 
+const getAllMovies = () => {
+    return fetch(`${API}/peliculas`)
+        .then(
+            res =>
+                res.json()
+        )
+        .catch(err => err)    
+}
+export { getMovieById, getAllMovies }; 
