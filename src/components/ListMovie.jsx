@@ -13,7 +13,7 @@ export default function ListMovie() {
         getAllMovies()
             .then(res => setMovies(res))
             .catch(res => res)
-    }) 
+    },[]) 
     return (
         <Container className='mt-4'>
             <h1 style={{color: '#4bbad8'}}>Cartelera</h1>
