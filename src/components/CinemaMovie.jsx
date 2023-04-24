@@ -5,12 +5,12 @@ import ShowCase from "./Showcase";
 import Cinema from "./Cinema";
 import { getSeatsFromMovie } from '../services/SeatService';
 import ModalConfirmPurchase from "./ModalConfirmPurchase";
-export default function CinemaMovie() {
+export default function CinemaMovie({idFunction}) {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seats, setSeats] = useState([]);
     const [modal, setModal] = useState(false);
     useEffect(()=>{
-        getSeatsFromMovie(1)
+        getSeatsFromMovie(idFunction)
             .then(data => {
                 setSeats(data)
             })

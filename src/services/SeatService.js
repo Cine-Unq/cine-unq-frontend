@@ -1,7 +1,7 @@
 const API = 'http://localhost:8080';
 
 const getSeatsFromMovie = (id) => {
-    return fetch(`${API}/asientos/pelicula/${id}`)
+    return fetch(`${API}/asientos/pelicula/funcion/${id}`)
         .then(
             res =>
                 res.json()

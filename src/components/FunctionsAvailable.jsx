@@ -8,7 +8,7 @@ export default function FunctiosAvailable({ movieId }) {
         getFunctionsOfMovie(movieId)
             .then(res => setTypeFunctions(res))
             .catch(err => err)
-    }) 
+    },[]) 
     return (
         <>
             {
