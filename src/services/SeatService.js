@@ -9,14 +9,14 @@ const getSeatsFromMovie = (id) => {
         .catch(err => console.log(err));
 }
 
-const generatePurchase = (data) => {    
-    if (!data || data.length == 0) {
+const generatePurchase = (seats, idFunction ) => {    
+    if (!seats || seats.length == 0) {
         return Promise.reject("Para generar la compra debe seleccionar al menos 1 asiento");
     }
     const purchase = {
         idCliente: 1,
-        idsAsientosComprados: data.map(data => data.id),
-        idPelicula: 1
+        idsAsientos: seats.map(data => data.id),
+        idFuncion: idFunction
     }
     return fetch(`${API}/compra`, {
         method: 'POST',
