@@ -6,28 +6,33 @@ import { useEffect, useState } from 'react';
 import { getMovieById } from '../services/MovieService';
 import { useParams } from 'react-router-dom';
 import FunctionAvailable from './FunctionsAvailable';
+import PopUpError from './PopupError';
 
 export default function MovieInfo() {
     const [movie, setMovie] = useState(null);
     const { idMovie }= useParams();
-
+    const [showError, setShowError] = useState(false);
+    const [textError, setTextError] = useState("");
     useEffect(()=>{
         getMovieById(idMovie)
             .then(data => {
                 setMovie(data)
             })
-            .catch(err => console.log(err))
-            
+            .catch(err => {
+                setTextError(err.message);
+                setShowError(true)
+            })
     },[]);
 
     return (
         <>
+            <PopUpError showPopupError={showError} body={textError} />
             { movie &&
                 (<Container fluid='sm'>
                     <Row className="justify-content-md-center">
                         <Col md={8} >
-                            <div style={{display: 'flex'}} className="justify-content-md-center">
-                                <Image fluid={true} rounded={true} src={movie.imagen}></Image>
+                            <div style={{display: 'flex', justifyContent: 'center'}} >
+                                <Image fluid={true} rounded={true} src={movie.imagen} style={{width:350, height: 500}}></Image>
                             </div>
                         </Col>
                     </Row>

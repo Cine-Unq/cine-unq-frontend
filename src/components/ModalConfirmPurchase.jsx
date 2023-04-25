@@ -6,12 +6,12 @@ import { generatePurchase } from '../services/SeatService';
 import Alert from 'react-bootstrap/Alert';
 
 
-export default function ModalConfirmPurchase({ onClose, seats }) {
+export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
     const [purchase, setPurchase]  = useState(false);
     const [error, setError] = useState(false);
 
     const handlePurchase = () => {
-        generatePurchase(seats)
+        generatePurchase(seats, idFunction)
             .then(res => {
                 setPurchase(res)
             })

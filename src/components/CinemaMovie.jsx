@@ -5,10 +5,14 @@ import ShowCase from "./Showcase";
 import Cinema from "./Cinema";
 import { getSeatsFromMovie } from '../services/SeatService';
 import ModalConfirmPurchase from "./ModalConfirmPurchase";
-export default function CinemaMovie({idFunction}) {
+import { useParams } from 'react-router-dom';
+
+export default function CinemaMovie() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seats, setSeats] = useState([]);
     const [modal, setModal] = useState(false);
+    const { idFunction } = useParams();
+
     useEffect(()=>{
         getSeatsFromMovie(idFunction)
             .then(data => {
@@ -22,7 +26,7 @@ export default function CinemaMovie({idFunction}) {
     }
     return (
         <div className="App">
-            {modal ? <ModalConfirmPurchase seats={selectedSeats} onClose={()=> setModal(false)}/>: <></>}
+            {modal ? <ModalConfirmPurchase idFunction={idFunction} seats={selectedSeats} onClose={()=> setModal(false)}/>: <></>}
             <ShowCase />
             <Cinema
                 selectedSeats={selectedSeats}
