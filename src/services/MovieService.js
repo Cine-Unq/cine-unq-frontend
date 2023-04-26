@@ -11,7 +11,7 @@ const handleRequestResponse = (response) => {
 const getMovieById = (id) => {
     return fetch(`${API}/peliculas/${id}`)
         .then(handleRequestResponse)
-        .catch(() => Promise.reject({message: '500 Internal Server Error' }))
+        .catch(err => err instanceof Error ? Promise.reject({message: '500 Internal Server Error' }) : Promise.reject(err))
 };
 
 const getAllMovies = () => {
