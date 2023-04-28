@@ -1,12 +1,11 @@
+import { handleErrorRequestResponse, handleRequestResponse } from "./utils";
+
 const API = 'http://localhost:8080';
 
 const getSeatsFromMovie = (id) => {
     return fetch(`${API}/asientos/pelicula/funcion/${id}`)
-        .then(
-            res =>
-                res.json()
-        )
-        .catch(err => console.log(err));
+        .then(handleRequestResponse)
+        .catch(handleErrorRequestResponse);
 }
 
 const generatePurchase = (seats, idFunction ) => {    
@@ -25,15 +24,14 @@ const generatePurchase = (seats, idFunction ) => {
         },
         body: JSON.stringify(purchase)
     })
-        .then(res => res.json());
+        .then(handleRequestResponse)
+        .catch(handleErrorRequestResponse);
 }
 
 const getPurchase = (id) => {
     return fetch(`${API}/compra/${id}`)
-        .then(
-            res =>
-                res.json()
-        )
+        .then(handleRequestResponse)
+        .catch(handleErrorRequestResponse)
         
 }
 export { getSeatsFromMovie, generatePurchase, getPurchase }; 
