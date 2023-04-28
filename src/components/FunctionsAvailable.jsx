@@ -11,6 +11,7 @@ export default function FunctiosAvailable({ movieId }) {
     },[]) 
     return (
         <>
+            {typeFunctions.length == 0 && <p style={{color: 'white'}}> No hay funciones disponibles para esta pelicula. </p>} 
             {
                 typeFunctions.map((typeFunction, i) => <TypeFunction key={i} tipoFuncion={typeFunction} idMovie={movieId}/>)
             }
