@@ -3,18 +3,25 @@ import NavBar from '../components/NavBar';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { getPurchase } from "../services/SeatService";
+import PopUpError from "../components/PopupError";
+
 export default function QRPage() {
     const [purchase, setPurchase]  = useState(false);
     const { idCompra }= useParams();
-
+    const [showError, setShowError] = useState(false);
+    const [textError, setTextError] = useState("");
     useEffect(() => {
         getPurchase(idCompra)
             .then(res => setPurchase(res))
-            .catch(err => console.log(err))
+            .catch(err => {
+                setTextError(err.message);
+                setShowError(true)
+            })
     }, [])
     return (
         <>
-            { purchase ?
+            <PopUpError showPopupError={showError} body={textError} />
+            { purchase ? 
                 <> 
                     <NavBar></NavBar>
                     <h4 style={{color: 'white', display: 'flex', justifyContent: 'center'}}>Se finalizo la compra exitosamente</h4>
