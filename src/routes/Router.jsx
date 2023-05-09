@@ -4,27 +4,42 @@ import MoviePage from "../pages/MoviePage";
 import SeatPage from "../pages/SeatPage";
 import QRPage from "../pages/QRPage";
 import BillboardCine from "../pages/BillboardCine";
+import Authentication from "../components/Authentication";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Login/>,
+        element: <Login/>
     },
     {
         path: "/movie/info/:idMovie",
-        element: <MoviePage/>
+        element:
+        <Authentication typeRol="USER">
+            <MoviePage/>
+        </Authentication>,
     },
     {
         path: "/movie/seats/:movie/funcion/:idFunction",
-        element: <SeatPage/>
+        element:
+        <Authentication typeRol="USER">
+            <SeatPage/>
+        </Authentication>,
+        
     },
     {
         path: "/movie/purchase/qr/:idCompra",
-        element: <QRPage/>
+        element: 
+        <Authentication typeRol="USER">
+            <QRPage/>
+        </Authentication>,
+
     },
     {
         path: "/billboard/movies",
-        element: <BillboardCine/>
+        element:
+        <Authentication typeRol="USER">
+            <BillboardCine/>
+        </Authentication>,
     }
 ]);
 

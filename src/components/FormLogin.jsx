@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { loginUser } from '../services/UserService';
 import { Navigate } from "react-router-dom";
-
+import { login } from '../services/utils';
 const styles = {
     font_color_title: {
         "color": "#EBB454",
@@ -42,9 +42,12 @@ export default function Formulario() {
         setPassword(() => event.target.value);
     };
 
-    const login = () => {
+    const handleLogin = () => {
         loginUser(username, password)
-            .then(() => setLogged(true))
+            .then(() => {
+                login("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibWlndWVsMDEiLCJyb2wiOiJVU0VSIn0.G69UJjattTX6Qd-7zuab5annhrwDeuXoP6vpBmd_WlU")
+                setLogged(true)
+            })
             .catch(err => console.log(err))
     }
     return (
@@ -67,7 +70,7 @@ export default function Formulario() {
                             <Form.Control type="password" placeholder="Ingrese su contraseña" onChange={handleChangePassword} />
                         </Form.Group>
                         <div className="d-flex justify-content-center">
-                            <Button variant="primary" onClick={login} style={styles.button_session}>
+                            <Button variant="primary" onClick={handleLogin} style={styles.button_session}>
                                 Iniciar Sesion
                             </Button>
                         </div>
