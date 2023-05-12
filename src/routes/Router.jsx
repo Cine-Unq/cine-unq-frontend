@@ -5,6 +5,7 @@ import SeatPage from "../pages/SeatPage";
 import QRPage from "../pages/QRPage";
 import BillboardCine from "../pages/BillboardCine";
 import Authentication from "../components/Authentication";
+import ScannerPage from "../pages/ScannerPage";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,13 @@ const router = createBrowserRouter([
         <Authentication typeRol="USER">
             <BillboardCine/>
         </Authentication>,
+    },
+    {
+        path: "/panel/scanner",
+        element:
+        // <Authentication typeRol="ADMIN">
+            <ScannerPage/>
+        // </Authentication>,
     }
 ]);
 
