@@ -25,23 +25,23 @@ const getMovieById = (id) => {
 };
 
 const getAllMovies = () => {
-    //const token = getToken();
-    // const header = {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         Authentication: 'Bearer ' + token
-    //     }
-    // }
+    const token = getToken();
+    const header = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+        }
+    }
     //console.log(header)
-    return axios.get(`${API}/peliculas/`)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err =>console.log(err))
-    // return fetch(`${API}/peliculas`, header)
-    //     .then(handleRequestResponse)
-    //     .catch(handleErrorRequestResponse)
+    // return axios.get(`${API}/peliculas/`)
+    //     .then(res => {
+    //         console.log(res)
+    //     })
+    //     .catch(err =>console.log(err))
+    return fetch(`${API}/peliculas/`, header)
+        .then(handleRequestResponse)
+        .catch(handleErrorRequestResponse)
 
 };
 
