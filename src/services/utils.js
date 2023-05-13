@@ -9,6 +9,24 @@ const handleRequestResponse = (response) => {
 
 const handleErrorRequestResponse = (err) => err instanceof Error ? Promise.reject({message: '500 Internal Server Error' }) : Promise.reject(err) 
 
+const fetchWithAuthentication = (method, url, body) => {
+    console.log(method, url, body)
+    const token = getToken();
+    const header = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token,
+        },
+    }
+    if (Object.keys(body).length > 0) {
+        header.body = JSON.stringify(body)
+    }
+    console.log(header)
+    return fetch(url, header)
+        .then(handleRequestResponse)
+        .catch(handleErrorRequestResponse)
+}
 
 
 const login = (token) => localStorage.setItem("jwt",JSON.stringify(token))
@@ -17,4 +35,4 @@ const getToken = () => JSON.parse(localStorage.getItem("jwt"));
 
 const logout = () => localStorage.removeItem("jwt");
 
-export { handleRequestResponse, handleErrorRequestResponse, getToken, login, logout }
+export { fetchWithAuthentication, handleRequestResponse, handleErrorRequestResponse, getToken, login, logout }

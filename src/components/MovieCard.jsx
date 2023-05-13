@@ -28,7 +28,6 @@ export default function MovieCard({ movie }) {
                     />
                     <Card.Title
                         onClick={() => {
-                            console.log(movie.id)
                             setNavigate(movie.id)
                         }}
                         className="text-center mt-3"

@@ -1,20 +1,9 @@
-import { handleErrorRequestResponse, handleRequestResponse } from "./utils";
-import { getToken } from "./utils";
+import { fetchWithAuthentication } from "./utils";
 const API = 'http://localhost:8080';
 
 
 const getSeatsFromMovie = (id) => {
-    const token = getToken();
-    const header = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-        }
-    }
-    return fetch(`${API}/asientos/pelicula/funcion/${id}`, header)
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse);
+    return fetchWithAuthentication('GET', `${API}/asientos/pelicula/funcion/${id}`, {})
 }
 
 const generatePurchase = (seats, idFunction ) => {    
@@ -26,21 +15,11 @@ const generatePurchase = (seats, idFunction ) => {
         idsAsientos: seats.map(data => data.id),
         idFuncion: idFunction
     }
-    return fetch(`${API}/compra`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(purchase)
-    })
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse);
+    return fetchWithAuthentication('POST',`${API}/compra/`,purchase)
 }
 
 const getPurchase = (id) => {
-    return fetch(`${API}/compra/${id}`)
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse)
+    return fetchWithAuthentication('GET',`${API}/compra/${id}`, {})
         
 }
 export { getSeatsFromMovie, generatePurchase, getPurchase }; 
