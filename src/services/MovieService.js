@@ -25,7 +25,7 @@ const getMovieById = (id) => {
 };
 
 const getAllMovies = () => {
-    // const token = getToken();
+    //const token = getToken();
     // const header = {
     //     method: 'GET',
     //     headers: {
@@ -33,9 +33,12 @@ const getAllMovies = () => {
     //         Authentication: 'Bearer ' + token
     //     }
     // }
-    // console.log(header)
-    return axios.get(`${API}/peliculas`).
-        then(data => Promise.resolve(data))
+    //console.log(header)
+    return axios.get(`${API}/peliculas/`)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err =>console.log(err))
     // return fetch(`${API}/peliculas`, header)
     //     .then(handleRequestResponse)
     //     .catch(handleErrorRequestResponse)
