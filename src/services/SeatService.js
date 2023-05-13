@@ -1,9 +1,18 @@
 import { handleErrorRequestResponse, handleRequestResponse } from "./utils";
-
+import { getToken } from "./utils";
 const API = 'http://localhost:8080';
 
+
 const getSeatsFromMovie = (id) => {
-    return fetch(`${API}/asientos/pelicula/funcion/${id}`)
+    const token = getToken();
+    const header = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    return fetch(`${API}/asientos/pelicula/funcion/${id}`, header)
         .then(handleRequestResponse)
         .catch(handleErrorRequestResponse);
 }

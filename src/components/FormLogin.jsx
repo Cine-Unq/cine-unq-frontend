@@ -44,8 +44,8 @@ export default function Formulario() {
 
     const handleLogin = () => {
         loginUser(username, password)
-            .then(() => {
-                login("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibWlndWVsMDEiLCJyb2wiOiJVU0VSIn0.G69UJjattTX6Qd-7zuab5annhrwDeuXoP6vpBmd_WlU")
+            .then(({ accessToken }) => {
+                login(accessToken)
                 setLogged(true)
             })
             .catch(err => console.log(err))

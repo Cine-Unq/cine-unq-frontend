@@ -1,6 +1,22 @@
 import { handleErrorRequestResponse, handleRequestResponse } from "./utils";
 const API = "http://localhost:8080";
+import { getToken } from "./utils";
+import axios from 'axios';
+axios.interceptors.request.use(
+    (config) => {
+        const token = getToken();
 
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        return config;
+    },
+
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 const getMovieById = (id) => {
     return fetch(`${API}/peliculas/${id}`)
@@ -9,9 +25,20 @@ const getMovieById = (id) => {
 };
 
 const getAllMovies = () => {
-    return fetch(`${API}/peliculas`)
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse)
+    // const token = getToken();
+    // const header = {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         Authentication: 'Bearer ' + token
+    //     }
+    // }
+    // console.log(header)
+    return axios.get(`${API}/peliculas`).
+        then(data => Promise.resolve(data))
+    // return fetch(`${API}/peliculas`, header)
+    //     .then(handleRequestResponse)
+    //     .catch(handleErrorRequestResponse)
 
 };
 

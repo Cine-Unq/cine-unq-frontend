@@ -4,7 +4,7 @@ import { getToken } from "../services/utils";
 export default function Authentication({ children, typeRol }) {
     const haveRol = () => {
         const { rol } = jwt_decode(getToken());
-        return typeRol === rol;  
+        return rol.some(r => r.authority == typeRol);  
     }
 
     return (
