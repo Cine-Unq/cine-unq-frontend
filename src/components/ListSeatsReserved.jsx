@@ -28,6 +28,9 @@ export default function ListSeatsReserved() {
         return res
     }
     const selectSeat = (seat) => {
+        if (seat.estado === 'OCUPADO') {
+            return
+        }
         const updatesSeats = seats.map( s => {
             let copy = null;
             if (seat.id === s.id) {
@@ -65,6 +68,9 @@ export default function ListSeatsReserved() {
                         </li>
                         <li>
                             <span className="seat" style={{background:'green'}}/> <small>Confirmado</small>
+                        </li>
+                        <li>
+                            <span className="seat" style={{background:'blue'}}/> <small>Seleccionado</small>
                         </li>
                     </ul>
                 </div>
