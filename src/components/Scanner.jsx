@@ -12,7 +12,7 @@ export default function Scanner() {
     const [displayScanner, setDisplayScanner] = useState(false);
     // const [showError, setShowError] = useState(false);
     // const [textError, setTextError] = useState("");
-    const [displayReservation, setDisplayReservation ] = useState(false); 
+    const [displayReservation, setDisplayReservation ] = useState(true); 
     const handleScan = (result, error) => {
         if (error) {
             // setDisplayScanner(false)
