@@ -3,7 +3,7 @@ const API = 'http://localhost:8080';
 
 
 const getSeatsFromMovie = (id) => {
-    return fetchWithAuthentication('GET', `${API}/asientos/pelicula/funcion/${id}`, {})
+    return fetchWithAuthentication('GET', `${API}/asientos/pelicula/funcion/${id}/`, {})
 }
 
 const generatePurchase = (seats, idFunction ) => {    

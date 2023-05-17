@@ -10,7 +10,6 @@ const handleRequestResponse = (response) => {
 const handleErrorRequestResponse = (err) => err instanceof Error ? Promise.reject({message: '500 Internal Server Error' }) : Promise.reject(err) 
 
 const fetchWithAuthentication = (method, url, body) => {
-    console.log(method, url, body)
     const token = getToken();
     const header = {
         method: method,
@@ -22,7 +21,6 @@ const fetchWithAuthentication = (method, url, body) => {
     if (Object.keys(body).length > 0) {
         header.body = JSON.stringify(body)
     }
-    console.log(header)
     return fetch(url, header)
         .then(handleRequestResponse)
         .catch(handleErrorRequestResponse)
