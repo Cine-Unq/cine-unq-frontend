@@ -29,7 +29,7 @@ export default function QRPage() {
                         <div style={{ display:'flex', justifyContent: 'center', background: 'white', padding: 10, width: '300px'}}>
                             <QRCode 
                                 size={256}
-                                value={JSON.stringify(purchase)}
+                                value={JSON.stringify({compra:idCompra})}
                                 viewBox={`0 0 256 256`}
                             />
                         </div>
