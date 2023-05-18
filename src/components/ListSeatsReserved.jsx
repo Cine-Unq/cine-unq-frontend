@@ -2,17 +2,23 @@ import Card from 'react-bootstrap/Card';
 import Seat from '../assets/seat-cinema.png';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { getInfoPurchase } from '../services/PurchaseService';
+import { getPurchase } from '../services/SeatService';
+import ModalConfirmSeat from './ModalConfirmSeat';
+import { useParams } from 'react-router-dom';
 
 export default function ListSeatsReserved() {
     const [purchase, setPurchase] = useState(null);
     const [seats, setSeats] = useState([]);
+    const [seatsSelected, setSeatsSelected] = useState([]);
+    const [modal, setModal] = useState(false);
+    const { idCompra } = useParams();
+
     useEffect(() => {
-        getInfoPurchase().
+        getPurchase(idCompra).
             then(res => {
                 setPurchase(res);
-                const seatsWithStyle  = addStyleToSeat(res.asientos)
-                console.log(seatsWithStyle)
+                const asientos = res.asientosOcupados.concat(res.asientosReservados);
+                const seatsWithStyle  = addStyleToSeat(asientos)
                 setSeats(seatsWithStyle)
             })}, []);
     const addStyleToSeat = (seats) => {
@@ -51,9 +57,14 @@ export default function ListSeatsReserved() {
         })
         setSeats(updatesSeats) 
     }
+    const handleModal = () => {
+        setSeatsSelected(seats.filter(s => s.estado === 'SELECTED'))
+        setModal(true)
+    }
 
     return (
-        <>
+        <div style={{color: 'white'}}>
+            {modal ? <ModalConfirmSeat idCompra={idCompra} idCliente={1} seats={seatsSelected} onClose={()=> setModal(false)} />: <></>}
             {
                 purchase && seats &&
             <>
@@ -78,24 +89,21 @@ export default function ListSeatsReserved() {
                     <div style={{width:200, color:'Black'}}>
                         {seats.map(asiento => {
                             return (
-                                <>
-                                    <Card key={asiento.id} style={{background: asiento.style}} onClick={() => selectSeat(asiento)}>
-                                        <Card.Img variant="top" src={Seat} />
-                                        <Card.Body>
-                                            <Card.Title>Asiento {asiento.fila} {asiento.columna} </Card.Title>
-                                        </Card.Body>
-                                    </Card>
-                                    <p></p>
-                                </>
+                                <Card key={asiento.id} style={{background: asiento.style, marginBottom:10}} onClick={() => selectSeat(asiento)}>
+                                    <Card.Img variant="top" src={Seat} />
+                                    <Card.Body>
+                                        <Card.Title>Asiento {asiento.fila} {asiento.columna} </Card.Title>
+                                    </Card.Body>
+                                </Card>
                             )
                         }) }
                     </div>
                 </div>
                 {<p className="d-flex justify-content-center">Asientos seleccionados {seats.filter(s => s.estado === 'SELECTED').length}</p>}
                 <div className="d-flex justify-content-center">
-                    <Button variant="secondary" onClick={() => console.log(seats.filter(s => s.estado === 'SELECTED'))}> Confirmar asientos</Button>
+                    <Button variant="secondary" onClick={handleModal}> Confirmar asientos</Button>
                 </div>
             </>}
-        </>
+        </div>
     )
 }

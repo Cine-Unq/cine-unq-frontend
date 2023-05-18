@@ -22,4 +22,13 @@ const getPurchase = (id) => {
     return fetchWithAuthentication('GET',`${API}/compra/${id}`, {})
         
 }
-export { getSeatsFromMovie, generatePurchase, getPurchase }; 
+
+const confirmSeats = (idCompra, idCliente, seats) => {
+    const body = {
+        "idCliente": idCliente,
+        "idCompra": idCompra,
+        "asientos": seats
+    }
+    return fetchWithAuthentication('POST', `${API}/asientos/pelicula/funcion/`, body)
+}
+export { getSeatsFromMovie, generatePurchase, getPurchase, confirmSeats }; 

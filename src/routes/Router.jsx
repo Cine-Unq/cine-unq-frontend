@@ -6,6 +6,7 @@ import QRPage from "../pages/QRPage";
 import BillboardCine from "../pages/BillboardCine";
 import Authentication from "../components/Authentication";
 import ScannerPage from "../pages/ScannerPage";
+import InfoPurchasePage from "../pages/InfoPurchasePage";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,13 @@ const router = createBrowserRouter([
         element:
         // <Authentication typeRol="ADMIN">
             <ScannerPage/>
+        // </Authentication>,
+    },
+    {
+        path: "/panel/info/purchase/:idCompra",
+        element:
+        // <Authentication typeRol="ADMIN">
+            <InfoPurchasePage/>
         // </Authentication>,
     }
 ]);

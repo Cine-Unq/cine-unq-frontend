@@ -4,15 +4,25 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { Navigate } from 'react-router-dom';
+
 // import PopUpError from './PopupError';
-import ListSeatsReserved from './ListSeatsReserved';
 
 export default function Scanner() {
     // const [data, setData] = useState('No result');
     const [displayScanner, setDisplayScanner] = useState(false);
+    const [navigate, setNavigate] = useState(false);
+
     // const [showError, setShowError] = useState(false);
     // const [textError, setTextError] = useState("");
-    const [displayReservation, setDisplayReservation ] = useState(true); 
+    const validateQR = (qr) => {
+        try {
+            const data = JSON.parse(qr)
+            return Object.hasOwn(data, 'compra')            
+        } catch (error) {
+            return false
+        }
+    } 
     const handleScan = (result, error) => {
         if (error) {
             // setDisplayScanner(false)
@@ -21,17 +31,20 @@ export default function Scanner() {
             console.info("error del scanner " + error);
         }
         if (result) {
-            if (result.text) {
-                console.log(result.text);
-                setDisplayReservation(true);
+            if (validateQR(result.text)) {
+                console.log("si valido qr")
                 setDisplayScanner(false)
+                setNavigate(JSON.parse(result.text).compra)
+            } else {
+                setDisplayScanner(false)
+                console.log("qr invalido"+ result)
             }
-
         }
     }
     return (
         <>
             {/* <PopUpError showPopupError={showError} body={textError} /> */}
+            {navigate &&  <Navigate to={`/panel/info/purchase/${navigate}`} replace={true}/>}
             <Container fluid='sm' style={{color:"white"}}>
                 <Row className="justify-content-md-center">
                     <Col>
@@ -61,16 +74,6 @@ export default function Scanner() {
                             </div>
                         </Col>
                     </Row>
-                }
-                {   displayReservation ?
-                    <> 
-                        <Row>
-                            <Col>
-                                <ListSeatsReserved></ListSeatsReserved>
-                            </Col>
-                        </Row>
-                    </>
-                    : <></>
                 }
             </Container>
         </>
