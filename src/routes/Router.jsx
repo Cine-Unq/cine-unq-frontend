@@ -7,6 +7,7 @@ import BillboardCine from "../pages/BillboardCine";
 import Authentication from "../components/Authentication";
 import ScannerPage from "../pages/ScannerPage";
 import InfoPurchasePage from "../pages/InfoPurchasePage";
+import InfoStateFunction from "../pages/InfoStateFunctions"; 
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,13 @@ const router = createBrowserRouter([
         element:
         // <Authentication typeRol="ADMIN">
             <InfoPurchasePage/>
+        // </Authentication>,
+    },
+    {
+        path: "/panel/info/peliculas/funcion",
+        element:
+        // <Authentication typeRol="ADMIN">
+            <InfoStateFunction/>
         // </Authentication>,
     }
 ]);
