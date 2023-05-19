@@ -1,30 +1,31 @@
 import React, { useState } from "react";
-import { Navigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { confirmSeats } from '../services/SeatService';
 import Alert from 'react-bootstrap/Alert';
 
 
-export default function ModalConfirmSeat({ onClose, seats, idCompra, idCliente }) {
-    const [purchase, setPurchase]  = useState(false);
+export default function ModalConfirmSeat({ onClose, seats, idCompra, idCliente, refresh }) {
     const [error, setError] = useState(false);
 
     const handleConfirmSeats = () => {
-        confirmSeats(idCompra, idCliente, seats)
-            .then(res => {
-                setPurchase(res)
-            })
-            .catch(err => {
-                setError(err)
-            })
+        if (seats.length === 0) {
+            setError({message: "no hay ningun asiento seleccionado"})
+        } else {
+            confirmSeats(idCompra, idCliente, seats)
+                .then(() => {
+                    refresh()
+                })
+                .catch(err => {
+                    setError(err)
+                })
+        }
     }
 
     return (
         <>
-            {purchase && <Navigate to={`/panel/info/purchase/${idCompra}`} replace={true}/>}
             <Modal show={true} onHide={onClose}>
-                {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
+                {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error.message} </Alert>: <></>}
                 <Modal.Header>
                     <Modal.Title>Confirmar asientos de la compra </Modal.Title>
                 </Modal.Header>

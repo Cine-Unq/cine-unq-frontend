@@ -12,7 +12,7 @@ export default function ListSeatsReserved() {
     const [seatsSelected, setSeatsSelected] = useState([]);
     const [modal, setModal] = useState(false);
     const { idCompra } = useParams();
-
+    const [refresh, setRefresh] = useState(false)
     useEffect(() => {
         getPurchase(idCompra).
             then(res => {
@@ -21,6 +21,15 @@ export default function ListSeatsReserved() {
                 const seatsWithStyle  = addStyleToSeat(asientos)
                 setSeats(seatsWithStyle)
             })}, []);
+    useEffect(() => {
+        getPurchase(idCompra).
+            then(res => {
+                setPurchase(res);
+                const asientos = res.asientosOcupados.concat(res.asientosReservados);
+                const seatsWithStyle  = addStyleToSeat(asientos)
+                setSeats(seatsWithStyle)
+            })}, [refresh]);
+            
     const addStyleToSeat = (seats) => {
         const res = seats.map(a => {
             let obj = {...a};
@@ -62,9 +71,13 @@ export default function ListSeatsReserved() {
         setModal(true)
     }
 
+    const handleRefresh = () => {
+        setModal(false)
+        setRefresh(!refresh)
+    }
     return (
         <div style={{color: 'white'}}>
-            {modal ? <ModalConfirmSeat idCompra={idCompra} idCliente={1} seats={seatsSelected} onClose={()=> setModal(false)} />: <></>}
+            {modal ? <ModalConfirmSeat idCompra={idCompra} idCliente={purchase.clienteID} seats={seatsSelected} onClose={()=> setModal(false)} refresh={handleRefresh} />: <></>}
             {
                 purchase && seats &&
             <>

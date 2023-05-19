@@ -1,7 +1,9 @@
 
 const handleRequestResponse = (response) => {
     if (response.ok) {
-        return response.json();
+        return response.json().then(res => Promise.resolve(res))
+        //catch atrapa el error de parsear un string vacio cuando el server responde con un 200 sin body
+            .catch(() => Promise.resolve({}));
     }
     return response.json()
         .then(res => Promise.reject(res))

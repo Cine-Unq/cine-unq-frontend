@@ -27,8 +27,8 @@ const confirmSeats = (idCompra, idCliente, seats) => {
     const body = {
         "idCliente": idCliente,
         "idCompra": idCompra,
-        "asientos": seats
+        "asientos": seats.map(s => s.id)
     }
-    return fetchWithAuthentication('POST', `${API}/asientos/pelicula/funcion/`, body)
+    return fetchWithAuthentication('POST', `${API}/asientos/pelicula/funcion`, body)
 }
 export { getSeatsFromMovie, generatePurchase, getPurchase, confirmSeats }; 

@@ -22,7 +22,7 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
 
     return (
         <>
-            {purchase && <Navigate to={`/movie/purchase/qr/${purchase.id}`} replace={true}/>}
+            {purchase && <Navigate to={`/movie/purchase/qr/${purchase.compraID}`} replace={true}/>}
             <Modal show={true} onHide={onClose}>
                 {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
                 <Modal.Header>
