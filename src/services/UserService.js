@@ -1,13 +1,9 @@
-// const loginUser = () => {
-//     return Promise.resolve("Loggueado correctamente");
-// }
-import { handleErrorRequestResponse, handleRequestResponse } from "./utils";
 const API = "http://localhost:8080";
 
-const loginUser = () => {
+const loginUser = ( email, password) => {
     const body = {
-        "mail": "pepeArgento@gmail.com.ar",
-        "password": "Pepe123"
+        "mail": email,
+        "password": password
     }
     return fetch(`${API}/auth/login`, {
         method: 'POST',
@@ -16,7 +12,12 @@ const loginUser = () => {
         },
         body: JSON.stringify(body)
     })
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse);
+        .then((response) => {
+            if (response.ok) {
+                return response.json().then(res => Promise.resolve(res))
+            }
+            return Promise.reject({message: "email o contraseña incorrectos"})
+        })
+        .catch(err => err instanceof Error ? Promise.reject({message: '500 Internal Server Error' }) : Promise.reject(err))
 }
 export { loginUser };
