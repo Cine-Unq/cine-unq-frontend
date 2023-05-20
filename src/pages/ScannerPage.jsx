@@ -4,7 +4,7 @@ import Scanner from '../components/Scanner';
 export default function ScannerPage() {
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar isAdmin={true}></NavBar>
             <Scanner></Scanner>
         </>
     )

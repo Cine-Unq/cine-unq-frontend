@@ -5,7 +5,7 @@ export default function BillboardCine() {
 
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar isAdmin={false}></NavBar>
             <ListMovie/>
         </>
     ) 

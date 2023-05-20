@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { getToken } from "../services/utils";
-export default function Authentication({ children, typeRol }) {
+export default function Authentication({ children, roles }) {
     const haveRol = () => {
         const { rol } = jwt_decode(getToken());
-        return rol.some(r => r.authority == typeRol);  
+        return rol.some(r => roles.includes(r.authority));  
     }
 
     return (

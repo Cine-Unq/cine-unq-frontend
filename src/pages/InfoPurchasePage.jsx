@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 export default function InfoPurchasePage() {
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar isAdmin={true}></NavBar>
             <ListSeatsReserved></ListSeatsReserved>
         </>
     ); 

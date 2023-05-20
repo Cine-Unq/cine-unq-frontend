@@ -17,14 +17,14 @@ const router = createBrowserRouter([
     {
         path: "/movie/info/:idMovie",
         element:
-        <Authentication typeRol="USER">
+        <Authentication roles={["USER","ADMIN"]}>
             <MoviePage/>
         </Authentication>,
     },
     {
         path: "/movie/seats/:movie/funcion/:idFunction",
         element:
-        <Authentication typeRol="USER">
+        <Authentication roles={["USER","ADMIN"]}>
             <SeatPage/>
         </Authentication>,
         
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     {
         path: "/movie/purchase/qr/:idCompra",
         element: 
-        <Authentication typeRol="USER">
+        <Authentication roles={["USER","ADMIN"]}>
             <QRPage/>
         </Authentication>,
 
@@ -40,30 +40,30 @@ const router = createBrowserRouter([
     {
         path: "/billboard/movies",
         element:
-        <Authentication typeRol="USER">
+        <Authentication roles={["USER","ADMIN"]}>
             <BillboardCine/>
         </Authentication>,
     },
     {
         path: "/panel/scanner",
         element:
-        // <Authentication typeRol="ADMIN">
+        <Authentication roles={["ADMIN"]}>
             <ScannerPage/>
-        // </Authentication>,
+        </Authentication>,
     },
     {
         path: "/panel/info/purchase/:idCompra",
         element:
-        // <Authentication typeRol="ADMIN">
+        <Authentication roles={["ADMIN"]}>
             <InfoPurchasePage/>
-        // </Authentication>,
+        </Authentication>,
     },
     {
         path: "/panel/info/peliculas/funcion",
         element:
-        // <Authentication typeRol="ADMIN">
+        <Authentication roles={["ADMIN"]}>
             <InfoStateFunction/>
-        // </Authentication>,
+        </Authentication>,
     }
 ]);
 

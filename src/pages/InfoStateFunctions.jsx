@@ -3,7 +3,7 @@ import DisplayStateFunction from "../components/DisplayStateFunction";
 export default function InfoStateFunction() {
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar isAdmin={true}></NavBar>
             <DisplayStateFunction/>
         </>
     );
