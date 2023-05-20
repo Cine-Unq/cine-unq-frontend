@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { loginUser } from '../services/UserService';
 import { Navigate } from "react-router-dom";
-import { login } from '../services/utils';
+import { login, isAdmin} from '../services/utils';
 import Alert from 'react-bootstrap/Alert';
 
 const styles = {
@@ -36,7 +36,7 @@ export default function Formulario() {
     const [password, setPassword] = useState(null);
     const [logged, setLogged] = useState(false);
     const [error, setError] = useState(false);
-
+    const [isRolAdmin, setIsRolAdmin] = useState(false);
     const handleChangeUserName = event => {
         setUsername(() => event.target.value);
     };
@@ -48,8 +48,10 @@ export default function Formulario() {
     const handleLogin = () => {
         loginUser(username, password)
             .then(({ accessToken }) => {
-                login(accessToken)
+                login(accessToken);
+                const admin = isAdmin();
                 setLogged(true)
+                setIsRolAdmin(admin)
             })
             .catch(err => setError(err))
     }
@@ -57,7 +59,12 @@ export default function Formulario() {
         <Container>
             <Row className="justify-content-md-start">
                 <Col className="col-md-7">
-                    {logged && <Navigate to="/billboard/movies" replace={true} />}
+                    { 
+                        logged ?  
+                            isRolAdmin ? <Navigate to="/panel/scanner" replace={true}/>:                         
+                                <Navigate to="/billboard/movies" replace={true} />
+                            :<></>
+                    }
                     {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error.message} </Alert>: <></>}
                     <Form>
                         <Form.Group>

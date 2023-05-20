@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 
 const handleRequestResponse = (response) => {
     if (response.ok) {
@@ -35,4 +36,8 @@ const getToken = () => JSON.parse(localStorage.getItem("jwt"));
 
 const logout = () => localStorage.removeItem("jwt");
 
-export { fetchWithAuthentication, handleRequestResponse, handleErrorRequestResponse, getToken, login, logout }
+const isAdmin = () => {
+    const { rol } = jwt_decode(getToken());
+    return rol.some(r => r.authority === 'ADMIN')
+}
+export { fetchWithAuthentication, handleRequestResponse, handleErrorRequestResponse, getToken, login, logout, isAdmin }
