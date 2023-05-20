@@ -2,8 +2,12 @@ import { fetchWithAuthentication } from "./utils";
 const API = 'http://localhost:8080';
 
 
-const getSeatsFromMovie = (id) => {
+const getSeatsFromFunction = (id) => {
     return fetchWithAuthentication('GET', `${API}/asientos/pelicula/funcion/${id}/`, {})
+}
+
+const getSeatsFromFunctionAdmin = (id) => {
+    return fetchWithAuthentication('GET', `${API}/asientos/pelicula/funcion/${id}/admin`, {})
 }
 
 const generatePurchase = (seats, idFunction ) => {    
@@ -31,4 +35,4 @@ const confirmSeats = (idCompra, idCliente, seats) => {
     }
     return fetchWithAuthentication('POST', `${API}/asientos/pelicula/funcion`, body)
 }
-export { getSeatsFromMovie, generatePurchase, getPurchase, confirmSeats }; 
+export { getSeatsFromFunction, generatePurchase, getPurchase, confirmSeats, getSeatsFromFunctionAdmin }; 

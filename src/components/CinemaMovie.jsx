@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import ShowCase from "./Showcase";
 import Cinema from "./Cinema";
-import { getSeatsFromMovie } from '../services/SeatService';
+import { getSeatsFromFunction } from '../services/SeatService';
 import ModalConfirmPurchase from "./ModalConfirmPurchase";
 import { useParams } from 'react-router-dom';
 import PopUpError from './PopupError';
@@ -16,7 +16,7 @@ export default function CinemaMovie() {
     const [showError, setShowError] = useState(false);
     const [textError, setTextError] = useState("");
     useEffect(()=>{
-        getSeatsFromMovie(idFunction)
+        getSeatsFromFunction(idFunction)
             .then(data => {
                 if (data.length > 0) {
                     setSeats(data)

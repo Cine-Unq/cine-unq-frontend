@@ -129,6 +129,14 @@
   background: #d61e1e;
 }
 
+.seat.reserved {
+  background: yellow;
+}
+
+.seat.confirmed {
+  background: green;
+}
+
 .info .count {
   color: #7bc47f;
 }

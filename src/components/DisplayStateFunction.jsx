@@ -1,52 +1,27 @@
 import { useEffect, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup'
 import DisplayStateSeats from './DisplayStateSeats';
+import { getAllMovies, getFunctionsOfMovie } from '../services/MovieService';
 export default function DisplayStateFunction() {
 
     const [movies, setMovies] = useState([]);
     const [functions, setFuntions] = useState([]);
     const [displaySeats, setDisplaySeats] = useState(false);
     useEffect(() => {
-        const data = [
-            {
-                "id": 1,
-                "nombre": "The Avengers",
-                "active":false
-            },
-            {
-                "id": 2,
-                "nombre": "John Wick",
-                "active":false
-            },
-            {
-                "id": 3,
-                "nombre": "Evil Dead",
-                "active":false
-            },
-            {
-                "id": 4,
-                "nombre": "Bastardos sin gloria",
-                "active":false
-            },
-            {
-                "id": 5,
-                "nombre": "El Padrino",
-                "active":false
-            }
-        ]
-        setMovies(data)
+        getAllMovies().
+            then(res => setMovies(res))
     }, [])
 
     const handleSelectMovie = (movie) => {
+        setFuntions([])
+        setDisplaySeats(false)
         let res = []; 
         movies.forEach(e => {
             if (e.id === movie.id) {
                 e.active = !movie.active;
                 if (e.active) {
-                    displayFunctions(e);
-                } else {
-                    notDisplayFuncionts(e);
-                }
+                    displayFunctions(e.id);
+                } 
             } else {
                 e.active = false;
             }
@@ -55,70 +30,34 @@ export default function DisplayStateFunction() {
         setMovies(res)
     }
 
-    const displayFunctions = () => {
-        let data = [
-            {
-                "tipo": "3D",
-                "horarios": [
-                    {
-                        "id": 3,
-                        "horario": "18:26"
-                    }
-                ],
-                "active":false
-
-            },
-            {
-                "tipo": "2D",
-                "horarios": [
-                    {
-                        "id": 1,
-                        "horario": "14:26"
-                    }
-                ],
-                "active":false
-            }
-        ]
-        let res = [];
-        data.forEach(d => {
-            const funcs = d.horarios.map(horario => ({id: horario.id, funcion: `${horario.horario} - ${d.tipo}`, active:false}));
-            res = res.concat(funcs)
-        })
-        setFuntions(res);
-    }
-
-    const notDisplayFuncionts = () => {
-        setFuntions([]);
-        notDisplaySeat(false);
+    const displayFunctions = (movie) => {
+        getFunctionsOfMovie(movie).
+            then(data => {
+                let res = [];
+                data.forEach(d => {
+                    const funcs = d.horarios.map(horario => ({id: horario.id, funcion: `${horario.horario} - ${d.tipo}`, active:false}));
+                    res = res.concat(funcs)
+                })
+                setFuntions(res);
+            })
     }
 
     const handleSelectFunction = (func) => {
+        setDisplaySeats(false)
         let res = []; 
         functions.forEach(f => {
             if (f.id === func.id) {
                 f.active = !func.active;
-                if (f.active) {
-                    displaySeatsOfFunction(f);
-                } else {
-                    notDisplaySeat();
-                }
             } else {
                 f.active = false;
             }
             res.push(f);
         }); 
+        const functionActive = res.filter(r => r.active)
+        if (functionActive.length === 1) {
+            setDisplaySeats({idFunction:functionActive[0].id}); 
+        }
         setFuntions(res);
-    }
-
-    const displaySeatsOfFunction = (func) => {
-        console.log(func)
-        const idMovie = movies.filter(m => m.active)[0].id;
-        const idFunction = functions.filter(f => f.active)[0].id;
-        setDisplaySeats({idMovie,idFunction}); 
-    }
-
-    const notDisplaySeat = () => {
-        setDisplaySeats(false); 
     }
 
     return (
