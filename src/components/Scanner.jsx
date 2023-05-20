@@ -45,12 +45,8 @@ export default function Scanner() {
         <>
             {/* <PopUpError showPopupError={showError} body={textError} /> */}
             {navigate &&  <Navigate to={`/panel/info/purchase/${navigate}`} replace={true}/>}
-            <Container fluid='sm' style={{color:"white"}}>
-                <Row className="justify-content-md-center">
-                    <Col>
-                        <h1 style={{textAlign: 'center'}}>Scanner</h1>
-                    </Col>
-                </Row>              
+            <Container style={{color:"white"}}>
+                <h1 style={{textAlign: 'center'}}>Scanner</h1>
                 {  !displayScanner ?
                     <Row className="justify-content-md-center">
                         <Col>
@@ -61,11 +57,12 @@ export default function Scanner() {
                     </Row>
                     :
                     <Row>
-                        <Col>
-                            <div className="d-flex justify-content-center">
-                                <Button variant="secondary" onClick={() => setDisplayScanner(false)}> Cancelar</Button>
-                            </div>
-                            <p></p>
+                        <div className="d-flex justify-content-center">
+                            <Button variant="secondary" onClick={() => setDisplayScanner(false)}> Cancelar</Button>
+                        </div>
+                        <p></p>
+                        <Col></Col>
+                        <Col md={8} lg={6} xl={6} xxl={4}>
                             <div style={{background:'white', margin: 10, padding: 10, maxWidth: 500, maxHeight: 500}}>
                                 <QrReader
                                     scanDelay={3000}
@@ -73,6 +70,7 @@ export default function Scanner() {
                                 />
                             </div>
                         </Col>
+                        <Col></Col>
                     </Row>
                 }
             </Container>
