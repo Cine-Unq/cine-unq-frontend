@@ -18,7 +18,7 @@ export default function Cinema({ selectedSeats, onSelectedSeatsChange, seats }) 
             <div className="seats">
                 {seats.map((seat) => {
                     const isSelected = selectedSeats.some((selected)=>selected.id == seat.id);
-                    const isOccupied = !seat.estaOcupado;
+                    const isOccupied = !seat.estaLibre;
                     return (
                         <span
                             tabIndex="0"

@@ -1,24 +1,16 @@
-import { handleErrorRequestResponse, handleRequestResponse } from "./utils";
+import { fetchWithAuthentication } from "./utils";
 const API = "http://localhost:8080";
-
-
+ 
 const getMovieById = (id) => {
-    return fetch(`${API}/peliculas/${id}`)
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse)
+    return fetchWithAuthentication('GET',`${API}/peliculas/${id}`, {})
 };
 
 const getAllMovies = () => {
-    return fetch(`${API}/peliculas`)
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse)
-
+    return fetchWithAuthentication('GET',`${API}/peliculas/`, {})
 };
 
 const getFunctionsOfMovie = (id) => {
-    return fetch(`${API}/funcion/${id}`)
-        .then(handleRequestResponse)
-        .catch(handleErrorRequestResponse)
+    return fetchWithAuthentication('GET',`${API}/funcion/${id}`, {})
 };
 
 export { getMovieById, getAllMovies, getFunctionsOfMovie };

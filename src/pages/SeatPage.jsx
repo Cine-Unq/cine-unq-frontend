@@ -7,7 +7,7 @@ export default function SeatPage() {
     const { idFunction }= useParams();
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar isAdmin={false}></NavBar>
             <div>
                 <CinemaMovie idFunction = {idFunction}></CinemaMovie>
             </div>

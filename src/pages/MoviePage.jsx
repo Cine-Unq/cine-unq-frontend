@@ -5,7 +5,7 @@ import MovieInfo from '../components/MovieInfo';
 export default function MoviePage() {
     return (
         <Container fluid style={{padding:0, margin:0}}>
-            <NavBar></NavBar>
+            <NavBar isAdmin={false}></NavBar>
             <MovieInfo ></MovieInfo>
         </Container>
     )

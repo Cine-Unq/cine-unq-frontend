@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { loginUser } from '../services/UserService';
 import { Navigate } from "react-router-dom";
+import { login, isAdmin} from '../services/utils';
+import Alert from 'react-bootstrap/Alert';
 
 const styles = {
     font_color_title: {
@@ -33,7 +35,8 @@ export default function Formulario() {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
     const [logged, setLogged] = useState(false);
-
+    const [error, setError] = useState(false);
+    const [isRolAdmin, setIsRolAdmin] = useState(false);
     const handleChangeUserName = event => {
         setUsername(() => event.target.value);
     };
@@ -42,32 +45,41 @@ export default function Formulario() {
         setPassword(() => event.target.value);
     };
 
-    const login = () => {
+    const handleLogin = () => {
         loginUser(username, password)
-            .then(() => setLogged(true))
-            .catch(err => console.log(err))
+            .then(({ accessToken }) => {
+                login(accessToken);
+                const admin = isAdmin();
+                setLogged(true)
+                setIsRolAdmin(admin)
+            })
+            .catch(err => setError(err))
     }
     return (
         <Container>
             <Row className="justify-content-md-start">
                 <Col className="col-md-7">
-                    {logged && (
-                        <Navigate to="/billboard/movies" replace={true} />
-                    )}
+                    { 
+                        logged ?  
+                            isRolAdmin ? <Navigate to="/panel/scanner" replace={true}/>:                         
+                                <Navigate to="/billboard/movies" replace={true} />
+                            :<></>
+                    }
+                    {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error.message} </Alert>: <></>}
                     <Form>
                         <Form.Group>
                             <Form.Label style={styles.font_color_title}>Bienvenido de vuelta</Form.Label>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label style={styles.font_color_label}>Usuario</Form.Label>
-                            <Form.Control type="email" placeholder="Ingrese su usuario" onChange={handleChangeUserName} />
+                            <Form.Control type="email" placeholder="Ingrese su usuario" onChange={handleChangeUserName} autoComplete="on" />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label style={styles.font_color_label} >Contraseña</Form.Label>
-                            <Form.Control type="password" placeholder="Ingrese su contraseña" onChange={handleChangePassword} />
+                            <Form.Control type="password" placeholder="Ingrese su contraseña" onChange={handleChangePassword} autoComplete="on"/>
                         </Form.Group>
                         <div className="d-flex justify-content-center">
-                            <Button variant="primary" onClick={login} style={styles.button_session}>
+                            <Button variant="primary" onClick={handleLogin} style={styles.button_session}>
                                 Iniciar Sesion
                             </Button>
                         </div>
