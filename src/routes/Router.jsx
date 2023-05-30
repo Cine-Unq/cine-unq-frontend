@@ -64,7 +64,21 @@ const router = createBrowserRouter([
         <Authentication roles={["ADMIN"]}>
             <InfoStateFunction/>
         </Authentication>,
-    }
+    },
+    {
+        path: "movie/purchase/success",
+        element:
+            <di>
+                <h1>Pago Exitoso</h1>
+            </di>
+    },
+    {
+        path: "movie/purchase/failure",
+        element:
+            <di>
+                <h1>Pago Fallido</h1>
+            </di>
+    },
 ]);
 
 export default function Router() {

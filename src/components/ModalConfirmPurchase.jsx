@@ -1,28 +1,30 @@
 import React, { useState } from "react";
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { generatePurchase } from '../services/SeatService';
+// import { generatePurchase } from '../services/SeatService';
 import Alert from 'react-bootstrap/Alert';
+import { createLinkPay } from "../services/MercadoPagoService";
 
 
-export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
-    const [purchase, setPurchase]  = useState(false);
+export default function ModalConfirmPurchase({ onClose, seats }) {
+    // const [purchase, setPurchase]  = useState(false);
     const [error, setError] = useState(false);
-
     const handlePurchase = () => {
-        generatePurchase(seats, idFunction)
-            .then(res => {
-                setPurchase(res)
-            })
-            .catch(err => {
-                setError(err)
-            })
+        // generatePurchase(seats, idFunction)
+        //     .then(res => {
+        //         setPurchase(res)
+        //     })
+        //     .catch(err => {
+        //         setError(err)
+        //     })
+        createLinkPay()
+            .then((res) => window.location.replace(res.link_pago))
     }
 
     return (
         <>
-            {purchase && <Navigate to={`/movie/purchase/qr/${purchase.compraID}`} replace={true}/>}
+            {/* {purchase && <Navigate to={`/movie/purchase/qr/${purchase.compraID}`} replace={true}/>} */}
             <Modal show={true} onHide={onClose}>
                 {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
                 <Modal.Header>
