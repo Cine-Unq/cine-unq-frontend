@@ -38,7 +38,7 @@ export default function NavBar({ isAdmin }) {
                                 </Nav>
                                 <Nav>
                                     <NavDropdown title={<BsFillPersonFill/>} id="collasible-nav-dropdown">
-                                        <NavDropdown.Item onClick={closeSession}>cerrar session</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={closeSession}>cerrar sesión</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                             </Navbar.Collapse>
