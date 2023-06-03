@@ -72,14 +72,14 @@ export default function Formulario() {
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label style={styles.font_color_label}>Usuario</Form.Label>
-                            <Form.Control type="email" placeholder="Ingrese su usuario" onChange={handleChangeUserName} autoComplete="on" />
+                            <Form.Control data-testid="input-usuario" type="email" placeholder="Ingrese su usuario" onChange={handleChangeUserName} autoComplete="on" />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label style={styles.font_color_label} >Contraseña</Form.Label>
-                            <Form.Control type="password" placeholder="Ingrese su contraseña" onChange={handleChangePassword} autoComplete="on"/>
+                            <Form.Control data-testid="input-contrasenia" type="password" placeholder="Ingrese su contraseña" onChange={handleChangePassword} autoComplete="on"/>
                         </Form.Group>
                         <div className="d-flex justify-content-center">
-                            <Button variant="primary" onClick={handleLogin} style={styles.button_session}>
+                            <Button data-testid="boton-sesion" variant="primary" onClick={handleLogin} style={styles.button_session}>
                                 Iniciar Sesion
                             </Button>
                         </div>
