@@ -1,4 +1,4 @@
-import {render, fireEvent, screen, act, waitFor} from '@testing-library/react';
+import {render, fireEvent, screen, act} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Login from '../pages/Login';
 import Authentication from '../components/Authentication';
@@ -41,7 +41,7 @@ test('user write wrong user and password', async () => {
     expect(screen.getByText('Contraseña o usuario incorrectos')).toBeInTheDocument();
 })
 
-test('user logged successfully', async () => {
+test('user logged successfully and redirect to home', async () => {
   const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sIjpbeyJhdXRob3JpdHkiOiJVU0VSIn1dLCJpYXQiOjE2ODU3NTE3NDksImV4cCI6MTY4NjY1MTc0OX0.b9X8jfnDzR85qQd_lYRwnuM3UKYyU6v8sCu1HylGinM'
   loginUser.mockResolvedValueOnce({accessToken: token});
   
