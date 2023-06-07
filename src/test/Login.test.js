@@ -1,4 +1,5 @@
-import {render, fireEvent, screen, act} from '@testing-library/react';
+import {render, screen, act} from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom';
 import Login from '../pages/Login';
 import Authentication from '../components/Authentication';
@@ -26,18 +27,16 @@ test('render login successfully', async () => {
 
 test('user write wrong user and password', async () => {
     loginUser.mockRejectedValueOnce(()=> ({message:"Contraseña o usuario incorrectos"}));
-    
     render(<Login />);
 
     const inputUser = screen.getByTestId('input-usuario');
     const inputPassword = screen.getByTestId('input-contrasenia');
     const button = screen.getByTestId('boton-sesion')
-    await act(async() => {
-      fireEvent.change(inputUser, {target: {value: 'miguel'}});
-      fireEvent.change(inputPassword, {target: {value: '123456'}});
-      fireEvent.click(button);
+    await act(async () => {
+      await userEvent.type(inputUser, 'miguel');
+      await userEvent.type(inputPassword, '1');
+      await userEvent.click(button);
     });
-
     expect(screen.getByText('Contraseña o usuario incorrectos')).toBeInTheDocument();
 })
 
@@ -72,11 +71,12 @@ test('user logged successfully and redirect to home', async () => {
   const inputPassword = screen.getByTestId('input-contrasenia');
   const button = screen.getByTestId('boton-sesion')
   await act(async () => {
-    fireEvent.change(inputUser, {target: {value: 'miguel'}});
-    fireEvent.change(inputPassword, {target: {value: '123456'}});
-    fireEvent.click(button);
+    userEvent.type(inputUser, 'miguel');
+    userEvent.type(inputPassword, '123456');
+    userEvent.click(button);
   });
 
-  expect(screen.getByText('Home')).toBeInTheDocument();
+  const billboard = screen.getByTestId('pagina-billboard');
+  expect(billboard).toBeVisible();
 })
 

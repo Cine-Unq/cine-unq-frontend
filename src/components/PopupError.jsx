@@ -1,23 +1,19 @@
 import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
 import { BsExclamationCircleFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
-export default function PopUpError({ showPopupError, body }) {
-
+export default function PopUpError({ body }) {
+    const [show, setShow] = useState(true);
     return (
-        <Modal show={showPopupError} >
-            <Modal.Header>
+        <Modal data-testid='modal-error' show={show} onHide={() => setShow(false)}>
+            <Modal.Header closeButton>
                 <div>
                     <BsExclamationCircleFill/> Error
                 </div>
             </Modal.Header>
 
-            <Modal.Body>
+            <Modal.Body >
                 <h4>{body}</h4>
             </Modal.Body>
-
-            <Modal.Footer>
-                <Link to="/billboard/movies"> Regresar al inicio  </Link>
-            </Modal.Footer>
         </Modal>
     )
 }

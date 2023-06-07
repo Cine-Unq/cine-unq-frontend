@@ -19,7 +19,7 @@ export default function QRPage() {
             })
     }, [])
     return (
-        <>
+        <div>
             <PopUpError showPopupError={showError} body={textError} />
             { purchase ? 
                 <> 
@@ -37,6 +37,6 @@ export default function QRPage() {
                 </>
                 : <></>    
             }
-        </>
+        </div>
     );
 }

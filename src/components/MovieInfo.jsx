@@ -26,7 +26,7 @@ export default function MovieInfo() {
 
     return (
         <>
-            <PopUpError showPopupError={showError} body={textError} />
+            {showError && <PopUpError body={textError} />}
             { movie &&
                 (<Container fluid='sm'>
                     <Row className="justify-content-md-center">

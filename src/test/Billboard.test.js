@@ -1,8 +1,13 @@
 import {render, screen, act} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { getAllMovies } from '../services/MovieService';
+import { getAllMovies, getMovieById } from '../services/MovieService';
 import ListMovie from '../components/ListMovie';
-
+import userEvent from '@testing-library/user-event'
+import {
+    RouterProvider,
+    createMemoryRouter,
+  } from "react-router-dom";
+import MoviePage from '../pages/MoviePage';
 jest.mock('../services/MovieService');
 
 beforeEach(() => getAllMovies.mockClear())
@@ -50,10 +55,65 @@ test('render 5 movies in billboard', async () => {
     
     await act( async () => render(<ListMovie />));
 
-    expect(screen.getByText('The Avengers')).toBeInTheDocument();
-    expect(screen.getByText('John Wick')).toBeInTheDocument();
-    expect(screen.getByText('Evil Dead')).toBeInTheDocument();
-    expect(screen.getByText('Bastardos sin gloria')).toBeInTheDocument();
-    expect(screen.getByText('El Padrino')).toBeInTheDocument();
+    const listMovies = screen.getAllByTestId('pelicula-en-cartelera');
+    expect(listMovies).toHaveLength(5);
 
+    expect(listMovies[0]).toHaveTextContent('The Avengers');
+    expect(listMovies[1]).toHaveTextContent('John Wick');
+    expect(listMovies[2]).toHaveTextContent('Evil Dead');
+    expect(listMovies[3]).toHaveTextContent('Bastardos sin gloria');
+    expect(listMovies[4]).toHaveTextContent('El Padrino');
+
+})
+
+test('cannot render movies in billboard because the aplication is not available', async () => {
+    getAllMovies.mockRejectedValueOnce({message:"La aplicacion no se encuentra disponible"});
+    
+    await act( async () => render(<ListMovie />));
+
+    const popupError = screen.getByTestId('modal-error');
+
+    expect(popupError).toHaveTextContent('La aplicacion no se encuentra disponible');
+})
+
+test('click on movie to display info', async () => {
+    const movies = [
+        {
+            "id": 1,
+            "nombre": "The Avengers",
+            "descripcion": "El director de la Agencia SHIELD decide reclutar a un equipo para salvar al mundo de un desastre casi seguro cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial.",
+            "duracion": 150,
+            "imagen": "https://http2.mlstatic.com/D_NQ_NP_888996-MLA32569507268_102019-O.jpg"
+        }
+    ]
+    getAllMovies.mockResolvedValueOnce(movies);
+    getMovieById.mockRejectedValueOnce({message:""});
+    const routes = [
+        {
+          path: "/",
+          element:
+            <ListMovie />
+        },
+        {
+          path: "/movie/info/:idMovie",
+          element:
+            <MoviePage />
+    
+        }
+      ];
+    
+    const router = createMemoryRouter(routes, {
+        initialEntries: ["/", "/movie/info/:idMovie"],
+        initialIndex: 0,
+    });
+
+    await act( async () => render(<RouterProvider router={router} />));
+    const movie = screen.getByTestId('mostrar-descripcion-pelicula');
+
+    await act(async () => {
+        userEvent.click(movie);
+    })
+
+    const movieInfoPage = screen.getByTestId('pagina-descripcion-pelicula');
+    expect(movieInfoPage).toBeVisible();
 })

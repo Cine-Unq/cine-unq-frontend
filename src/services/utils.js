@@ -10,7 +10,7 @@ const handleRequestResponse = (response) => {
         .then(res => Promise.reject(res))
 }
 
-const handleErrorRequestResponse = (err) => err instanceof Error ? Promise.reject({message: '500 Internal Server Error' }) : Promise.reject(err) 
+const handleErrorRequestResponse = (err) => err instanceof Error ? Promise.reject({message: 'La aplicación no se encuentra disponible' }) : Promise.reject(err) 
 
 const fetchWithAuthentication = (method, url, body) => {
     const token = getToken();
