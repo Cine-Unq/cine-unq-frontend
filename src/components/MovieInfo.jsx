@@ -39,11 +39,11 @@ export default function MovieInfo() {
                     <p></p>
                     <Row className="justify-content-md-center">
                         <Col xs='auto' md={8} >
-                            <h1 style={{ color:'#4bbad8' }}>{movie.nombre}</h1>
+                            <h1 data-testid='titulo-pelicula' style={{ color:'#4bbad8' }}>{movie.nombre}</h1>
                         </Col>
                     </Row>
                     <Row className="justify-content-md-center">
-                        <Col xs='auto' md={8} >
+                        <Col data-testid='descripcion-pelicula' xs='auto' md={8} >
                             <p style={{ color: '#FFFFFF' }}>{movie.descripcion}</p>
                         </Col>
                     </Row>

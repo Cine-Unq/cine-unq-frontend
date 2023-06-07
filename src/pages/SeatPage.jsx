@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 export default function SeatPage() {
     const { idFunction }= useParams();
     return (
-        <div>
+        <div data-testid='pagina-de-asientos'>
             <NavBar isAdmin={false}></NavBar>
             <div>
                 <CinemaMovie idFunction = {idFunction}></CinemaMovie>

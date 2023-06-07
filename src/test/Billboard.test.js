@@ -2,7 +2,7 @@ import {render, screen, act} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { getAllMovies, getMovieById } from '../services/MovieService';
 import ListMovie from '../components/ListMovie';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import {
     RouterProvider,
     createMemoryRouter,
