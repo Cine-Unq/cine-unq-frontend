@@ -37,7 +37,7 @@ export default function CinemaMovie() {
     }
     return (
         <>
-            <PopUpError showPopupError={showError} body={textError} />
+            {showError && <PopUpError body={textError} />}
             {seats.length > 0 &&
             <div className="App">
                 {modal ? <ModalConfirmPurchase idFunction={idFunction} seats={selectedSeats} onClose={()=> setModal(false)}/>: <></>}
