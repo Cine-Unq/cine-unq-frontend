@@ -35,7 +35,7 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
                     <Button variant="secondary" onClick={onClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={handlePurchase}>
+                    <Button data-testid='buton-compra-modal-confirm' variant="primary" onClick={handlePurchase}>
                         Comprar
                     </Button>
                 </Modal.Footer>
