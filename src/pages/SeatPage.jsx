@@ -1,5 +1,5 @@
 // import Container from 'react-bootstrap/Container';
-import CinemaMovie from '../components/CinemaMovie';
+import ContainerCinema from '../components/ContainerCinema';
 import NavBar from '../components/NavBar';
 import { useParams } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ export default function SeatPage() {
         <div data-testid='pagina-de-asientos'>
             <NavBar isAdmin={false}></NavBar>
             <div>
-                <CinemaMovie idFunction = {idFunction}></CinemaMovie>
+                <ContainerCinema idFunction = {idFunction}></ContainerCinema>
             </div>
         </div>
     );

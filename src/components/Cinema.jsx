@@ -21,6 +21,7 @@ export default function Cinema({ selectedSeats, onSelectedSeatsChange, seats }) 
                     const isOccupied = !seat.estaLibre;
                     return (
                         <span
+                            data-testid="asiento"
                             tabIndex="0"
                             key={seat.id}
                             className={clsx(

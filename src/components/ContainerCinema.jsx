@@ -8,7 +8,7 @@ import ModalConfirmPurchase from "./ModalConfirmPurchase";
 import { useParams } from 'react-router-dom';
 import PopUpError from './PopupError';
 
-export default function CinemaMovie() {
+export default function ContainerCinema() {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seats, setSeats] = useState([]);
     const [modal, setModal] = useState(false);
@@ -53,9 +53,9 @@ export default function CinemaMovie() {
                 Has seleccionado <span className="count">{selectedSeats.length}</span> asientos.
                 </p>
                 <ul style={{color: 'white', padding: 10}}>
-                    {selectedSeats.map((selected)=> (<li key={selected.id + selected.fila}>Silla columna {selected.columna} y fila {selected.fila} </li>))}
+                    {selectedSeats.map((selected)=> (<li data-testid='asientos-seleccionado' key={selected.id}>Silla columna {selected.columna} y fila {selected.fila} </li>))}
                 </ul>
-                <Button variant="primary" size="lg" onClick={handleModal}>
+                <Button data-testid='boton-comprar-asientos' variant="primary" size="lg" onClick={handleModal}>
                 Comprar asientos
                 </Button>
             </div>
