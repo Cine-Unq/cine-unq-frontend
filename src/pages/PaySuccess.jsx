@@ -5,15 +5,15 @@ import { confirmPayedPurchase } from "../services/PurchaseService";
 import { Navigate } from "react-router-dom";
 
 export default function PaySuccess() {
-    const { id } = useParams();
+    const { idCompra } = useParams();
     const [navigate, setNavigate] = useState(false);
     useEffect(() => {
-        confirmPayedPurchase(id)
-            .then(() => setNavigate(true))
+        confirmPayedPurchase(idCompra)
+            .then(res => setNavigate(true))
     })
     return (
         <>
-            {navigate && <Navigate to={`/movie/purchase/qr/${id}`} replace={true}/>}
+            {navigate && <Navigate to={`/movie/purchase/qr/${idCompra}`} replace={true}/>}
             <NavBar isAdmin={false}></NavBar>
         </>
     ); 

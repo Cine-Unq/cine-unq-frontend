@@ -68,7 +68,7 @@ const router = createBrowserRouter([
             </Authentication>,
     },
     {
-        path: "/movie/purchase/success/:id",
+        path: "/movie/purchase/success/:idCompra",
         element:
             <PaySuccess />
     },
