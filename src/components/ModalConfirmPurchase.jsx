@@ -7,8 +7,9 @@ import Alert from 'react-bootstrap/Alert';
 
 export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const handlePurchase = () => {
-
+        setLoading(true);
         generateCompraMP(seats, idFunction)
             .then(res => {
                 window.location.replace(res.link)
@@ -35,9 +36,14 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
                     <Button variant="secondary" onClick={onClose}>
                         Cancelar
                     </Button>
-                    <Button data-testid='buton-compra-modal-confirm' variant="primary" onClick={handlePurchase}>
-                        Comprar
-                    </Button>
+                    {!loading ?
+                        <Button data-testid='buton-compra-modal-confirm' variant="primary" onClick={handlePurchase}>
+                            Comprar
+                        </Button> :
+                        <Button data-testid='buton-compra-modal-confirm' variant="primary" onClick={handlePurchase}>
+                            cargando...
+                        </Button>
+                    }
                 </Modal.Footer>
             </Modal>
         </>
