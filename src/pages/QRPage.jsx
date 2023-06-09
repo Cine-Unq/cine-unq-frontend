@@ -2,7 +2,7 @@ import QRCode from "react-qr-code";
 import NavBar from '../components/NavBar';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { getPurchase } from "../services/SeatService";
+import { getPurchase } from "../services/PurchaseService";
 import PopUpError from "../components/PopupError";
 
 export default function QRPage() {
@@ -20,7 +20,7 @@ export default function QRPage() {
     }, [])
     return (
         <div>
-            <PopUpError showPopupError={showError} body={textError} />
+            {showError && <PopUpError  body={textError} />}
             { purchase ? 
                 <> 
                     <NavBar isAdmin={false}></NavBar>

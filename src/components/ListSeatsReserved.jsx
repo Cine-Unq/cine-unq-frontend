@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Seat from '../assets/seat-cinema.png';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { getPurchase } from '../services/SeatService';
+import { getPurchase } from '../services/PurchaseService';
 import ModalConfirmSeat from './ModalConfirmSeat';
 import { useParams } from 'react-router-dom';
 

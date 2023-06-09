@@ -8,6 +8,8 @@ import Authentication from "../components/Authentication";
 import ScannerPage from "../pages/ScannerPage";
 import InfoPurchasePage from "../pages/InfoPurchasePage";
 import InfoStateFunction from "../pages/InfoStateFunctions";
+import PaySuccess from "../pages/PaySuccess";
+import PayRejected from "../pages/PayRejected";
 
 const router = createBrowserRouter([
     {
@@ -68,16 +70,12 @@ const router = createBrowserRouter([
     {
         path: "/movie/purchase/success/:id",
         element:
-            <di>
-                <h1>Pago Exitoso</h1>
-            </di>
+            <PaySuccess />
     },
     {
         path: "/movie/purchase/failure",
         element:
-            <di>
-                <h1>Pago Fallido</h1>
-            </di>
+            <PayRejected />
     },
 ]);
 

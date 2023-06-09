@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { generateCompraMP } from '../services/SeatService';
+import { generateCompraMP } from '../services/PurchaseService';
 import Alert from 'react-bootstrap/Alert';
 
 
