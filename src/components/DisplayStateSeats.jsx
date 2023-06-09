@@ -27,7 +27,7 @@ export default function DisplayStateSeats({ info }) {
             <div className="App">
                 <div className="Cinema">
                     <div className="screen" />
-                    <div className="seats">
+                    <div data-testid='estado-asientos' className="seats">
                         {seats.map((seat) => {
                             
                             return (

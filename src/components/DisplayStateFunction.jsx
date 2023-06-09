@@ -72,7 +72,7 @@ export default function DisplayStateFunction() {
                             movies.map((m) => {
                            
                                 return (
-                                    <ListGroup.Item key={m.id} action active={m.active} onClick={() => handleSelectMovie(m)}>
+                                    <ListGroup.Item data-testid='seleccion-pelicula-item' key={m.id} action active={m.active} onClick={() => handleSelectMovie(m)}>
                                         {m.nombre}
                                     </ListGroup.Item> 
                                 )
@@ -85,7 +85,7 @@ export default function DisplayStateFunction() {
                         {
                             functions.map((f) => {
                                 return (
-                                    <ListGroup.Item key={f.id} action active={f.active} onClick={() => handleSelectFunction(f)}>
+                                    <ListGroup.Item data-testid='seleccion-function-item' key={f.id} action active={f.active} onClick={() => handleSelectFunction(f)}>
                                         {f.funcion}
                                     </ListGroup.Item> 
                                 )
