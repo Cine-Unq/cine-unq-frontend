@@ -2,11 +2,32 @@ import {render, screen, act} from '@testing-library/react';
 import ContainerCinema from '../components/ContainerCinema';
 import { getSeatsFromFunction } from '../services/SeatService';
 import userEvent from '@testing-library/user-event';
-
+import { generateCompraMP } from '../services/PurchaseService';
+import SeatPage from '../pages/SeatPage';
+import {
+    RouterProvider,
+    createMemoryRouter,
+  } from "react-router-dom";
+  
 jest.mock('../services/SeatService');
+jest.mock('../services/PurchaseService')
 
-beforeEach(() => getSeatsFromFunction.mockClear());
+beforeEach(() => {
+    getSeatsFromFunction.mockClear();
+    generateCompraMP.mockClear();
+});
 
+const replace = window.location.replace;
+
+beforeAll(() => {
+    Object.defineProperty(window, 'location', {
+        value: { replace: jest.fn() }
+    });
+});
+
+afterAll(() => {
+    window.location.replace = replace;
+});
 
 test('render page of seats successfull', async () => {
     const seats =
@@ -567,5 +588,50 @@ test('open modal confirm when click button buy seats', async () => {
 
     const listSeatsModal = screen.getAllByTestId('asientos-seleccionados-modal');
     expect(listSeatsModal).toHaveLength(1);
-
 })
+
+test('i make a purchase and redirect to Mercadopago', async () => {
+    const seats =
+    [
+        {
+            "id": 113,
+            "estaLibre": true,
+            "estaReservado": false,
+            "estaOcupado": false,
+            "columna": "A",
+            "fila": "1"
+        }
+    ]
+    getSeatsFromFunction.mockResolvedValueOnce(seats);
+    generateCompraMP.mockResolvedValueOnce({link:'prueba'})
+    
+    const routes = [
+        {
+          path: "/",
+          element:
+            <SeatPage />
+        }
+    ];
+    const router = createMemoryRouter(routes, {
+        initialEntries: ["/",""],
+        initialIndex: 0,
+    });
+
+
+    await act(async () => render(<RouterProvider router={router} />));
+
+    const listSeats = screen.getAllByTestId('asiento');
+    const buttonBuySeats = screen.getByTestId('boton-comprar-asientos');
+    await act(async () => {
+        userEvent.click(listSeats[0]);
+    })
+    await act(async () => {
+        userEvent.click(buttonBuySeats);
+    })
+
+    const buttonConfirmPurchase = screen.getByTestId('buton-compra-modal-confirm');
+    await act(async () => {
+        userEvent.click(buttonConfirmPurchase);
+    })
+    expect(window.location.replace).toHaveBeenCalled();
+}) 
