@@ -39,7 +39,7 @@ export default function ModalConfirmSeat({ onClose, seats, idCompra, idCliente, 
                     <Button variant="secondary" onClick={onClose}>
               Cancelar
                     </Button>
-                    <Button variant="primary" onClick={handleConfirmSeats}>
+                    <Button data-testid='boton-actualizar-asientos' variant="primary" onClick={handleConfirmSeats}>
               Actualizar asientos
                     </Button>
                 </Modal.Footer>

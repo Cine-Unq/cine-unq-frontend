@@ -9,7 +9,7 @@ export default function PaySuccess() {
     const [navigate, setNavigate] = useState(false);
     useEffect(() => {
         confirmPayedPurchase(idCompra)
-            .then(res => setNavigate(true))
+            .then(() => setNavigate(true))
     })
     return (
         <>

@@ -102,19 +102,19 @@ export default function ListSeatsReserved() {
                     <div style={{width:200, color:'Black'}}>
                         {seats.map(asiento => {
                             return (
-                                <Card key={asiento.id} style={{background: asiento.style, marginBottom:10}} onClick={() => selectSeat(asiento)}>
+                                <Card data-testid='asiento-info' key={asiento.id} style={{background: asiento.style, marginBottom:10}} onClick={() => selectSeat(asiento)}>
                                     <Card.Img variant="top" src={Seat} />
                                     <Card.Body>
-                                        <Card.Title>Asiento {asiento.fila} {asiento.columna} </Card.Title>
+                                        <Card.Title>Asiento {asiento.fila} {asiento.columna}</Card.Title>
                                     </Card.Body>
                                 </Card>
                             )
                         }) }
                     </div>
                 </div>
-                {<p className="d-flex justify-content-center">Asientos seleccionados {seats.filter(s => s.estado === 'SELECTED').length}</p>}
+                {<p data-testid='cant-asientos-seleccionados-de-compra' className="d-flex justify-content-center">Asientos seleccionados {seats.filter(s => s.estado === 'SELECTED').length}</p>}
                 <div className="d-flex justify-content-center">
-                    <Button variant="secondary" onClick={handleModal}> Confirmar asientos</Button>
+                    <Button data-testid='confirmar-asientos' variant="secondary" onClick={handleModal}> Confirmar asientos</Button>
                 </div>
             </>}
         </div>
