@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "../pages/Login";
+// import Login from "../pages/Login";
 import MoviePage from "../pages/MoviePage";
 import SeatPage from "../pages/SeatPage";
 import QRPage from "../pages/QRPage";
@@ -10,11 +10,16 @@ import InfoPurchasePage from "../pages/InfoPurchasePage";
 import InfoStateFunction from "../pages/InfoStateFunctions";
 import PaySuccess from "../pages/PaySuccess";
 import PayRejected from "../pages/PayRejected";
-
+import SeatLayout from "../pages/SeatLayout";
+import Ejemplo from "../pages/Ejemplo";
 const router = createBrowserRouter([
     {
+        path: "/a",
+        element: <SeatLayout />
+    },    
+    {
         path: "/",
-        element: <Login />
+        element: <Ejemplo />
     },
     {
         path: "/movie/info/:idMovie",

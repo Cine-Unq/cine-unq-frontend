@@ -110,7 +110,6 @@
 
 .seat {
   display: inline-block;
-  background: #fbf6f6;
   width: 22px;
   height: 18px;
   border-top-left-radius: 10px;
@@ -163,4 +162,18 @@
 
 .confirmacion li {
   margin: 0 8px;
+}
+
+@media (max-width: 576px){
+  .seat {
+    width: 19px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 426px){
+  .seat {
+    width: 16px;
+    height: 13px;
+  }
 }
