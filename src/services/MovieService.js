@@ -13,4 +13,10 @@ const getFunctionsOfMovie = (id) => {
     return fetchWithAuthentication('GET',`${API}/funcion/${id}`, {})
 };
 
-export { getMovieById, getAllMovies, getFunctionsOfMovie };
+const createFunction = (movie,sala,time) => {
+    //return fetchWithAuthentication('POST', `${API}/funcion/crear`, body) 
+    const body = {movie:movie.id,sala:sala.id,time};
+    console.log(body);
+    return Promise.resolve(""); 
+}
+export { getMovieById, getAllMovies, getFunctionsOfMovie, createFunction };

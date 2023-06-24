@@ -11,6 +11,7 @@ import InfoStateFunction from "../pages/InfoStateFunctions";
 import PaySuccess from "../pages/PaySuccess";
 import PayRejected from "../pages/PayRejected";
 import CreateSalaPage from "../pages/CreateSalaPage";
+import CreateFunctionPage from "../pages/CreateFunctionPage";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     {
         path: "/create/sala",
         element: <CreateSalaPage />
+    },
+    {
+        path: "/create/function",
+        element: <CreateFunctionPage />
     },
     {
         path: "/movie/info/:idMovie",

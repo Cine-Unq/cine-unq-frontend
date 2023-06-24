@@ -56,18 +56,18 @@ export default function CreateSala() {
             {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
             {msgSalaSaveSuccessful ? <Alert variant='success' onClose={() => setMsgSalaSaveSuccessful(false)} dismissible> {msgSalaSaveSuccessful} </Alert>: <></>}
             <div style={{display: 'grid', justifyItems: 'center'}}>
-                <Form.Label style={{color: 'white'}}>Nombre de la Sala</Form.Label>
+                <Form.Label style={{color: 'white', fontSize:'large'}}>Nombre de la Sala</Form.Label>
                 <Form.Control type="email" placeholder="Ingrese un nombre" onChange={({target}) => setNameSala(target.value)} autoComplete="on" />
-                <Form.Label style={{color: 'white'}}>Tipo Sala</Form.Label>
+                <Form.Label style={{color: 'white', fontSize:'large'}}>Tipo Sala</Form.Label>
                 <Form.Select aria-label="Default select example" onChange={({target})=>setTipoSala(target.value)}>
                     <option value="">Seleccionar un tipo de formato</option>
                     <option value="2D">2D</option>
                     <option value="3D">3D</option>
                     <option value="4D">4D</option>
                 </Form.Select>
-                <Form.Label style={{color: 'white'}}>Cantidad de Filas</Form.Label>
+                <Form.Label style={{color: 'white', fontSize:'large'}}>Cantidad de Filas</Form.Label>
                 <Form.Control type="number" min="1" max="25" placeholder="Ingrese cantidad de filas" onChange={({target}) => setCantRows(target.value)} autoComplete="on" />
-                <Form.Label style={{color: 'white'}}>Cantidad de Columnas </Form.Label>
+                <Form.Label style={{color: 'white', fontSize:'large'}}>Cantidad de Columnas </Form.Label>
                 <Form.Control type="number" min="1" max="25" placeholder="Ingrese cantidad de columnas" onChange={({target}) => setCantColumns(target.value)} autoComplete="on" />
                 <br></br>
             </div>
