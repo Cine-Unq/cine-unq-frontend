@@ -43,7 +43,7 @@ export default function CreateSala() {
         } else if (matrix.length > 0 || matrix.flat(1).filter(s => s.active).length === 0) {
             const rows = matrix.length;
             const columns = matrix[0].length;
-            const seats = matrix.flat(1).filter(s => s.active)
+            const seats = matrix.flat(1).filter(s => s.active).map(seat => ({fila:seat.fila,columna:seat.columna}))
             saveLayoutSala({rows,columns,seats, name: nameSala, tipoSala})
                 .then(() => setMsgSalaSaveSuccessful("Se guardo correctamente la sala"))
                 .catch(() => setError("No se pudo guardar la sala creada"));
