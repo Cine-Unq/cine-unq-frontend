@@ -93,7 +93,7 @@ export default function CreateFunction() {
                 {modal ? <ModalConfirmCreateFunction movie={movieSelected} sala={salaSelected} time={timeFunction} successCreate={successCreate}onClose={()=> setModal(false)}/>: <></>}
 
                 <div style={{width:400}}> 
-                    <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Nombre de la Sala</Form.Label>
+                    <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Hora de la función</Form.Label>
                     <Form.Control type="time" placeholder="Ingrese un nombre" onChange={({target}) => setTimeFunction(target.value)}/>
                     <br></br>
                     <Form.Label style={{display:"flex", justifyContent:'center',color:'white',fontSize: 'large'}}>Seleccione una película</Form.Label>
