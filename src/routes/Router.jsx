@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import Login from "../pages/Login";
+import Login from "../pages/Login";
 import MoviePage from "../pages/MoviePage";
 import SeatPage from "../pages/SeatPage";
 import QRPage from "../pages/QRPage";
@@ -12,6 +12,10 @@ import PaySuccess from "../pages/PaySuccess";
 import PayRejected from "../pages/PayRejected";
 import CreateSalaPage from "../pages/CreateSalaPage";
 const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Login />
+    },
     {
         path: "/create/sala",
         element: <CreateSalaPage />
