@@ -58,6 +58,7 @@ export default function CreateSala() {
             <div style={{display: 'grid', justifyItems: 'center'}}>
                 <Form.Label style={{color: 'white', fontSize:'large'}}>Nombre de la Sala</Form.Label>
                 <Form.Control type="email" placeholder="Ingrese un nombre" onChange={({target}) => setNameSala(target.value)} autoComplete="on" />
+                <p></p>
                 <Form.Label style={{color: 'white', fontSize:'large'}}>Tipo Sala</Form.Label>
                 <Form.Select aria-label="Default select example" onChange={({target})=>setTipoSala(target.value)}>
                     <option value="">Seleccionar un tipo de formato</option>
@@ -65,19 +66,23 @@ export default function CreateSala() {
                     <option value="3D">3D</option>
                     <option value="4D">4D</option>
                 </Form.Select>
+                <p></p>
                 <Form.Label style={{color: 'white', fontSize:'large'}}>Cantidad de Filas</Form.Label>
                 <Form.Control type="number" min="1" max="25" placeholder="Ingrese cantidad de filas" onChange={({target}) => setCantRows(target.value)} autoComplete="on" />
+                <p></p>
                 <Form.Label style={{color: 'white', fontSize:'large'}}>Cantidad de Columnas </Form.Label>
                 <Form.Control type="number" min="1" max="25" placeholder="Ingrese cantidad de columnas" onChange={({target}) => setCantColumns(target.value)} autoComplete="on" />
                 <br></br>
             </div>
-            <Button variant="primary" onClick={createMatrix} >
+            <div style={{display:'flex'}}>
+                <Button variant="primary" onClick={createMatrix} >
                 Crear sala
-            </Button>
-            <br></br>
-            <Button variant="secondary" onClick={()=>setMatrix([])} >
+                </Button>
+                <span style={{width:10}}></span>
+                <Button variant="secondary" onClick={()=>setMatrix([])} >
                 Borrar sala
-            </Button>
+                </Button>
+            </div>
             <br></br>
             <CreateLayout matrix={matrix} updateMatrix={setMatrix}/>
             <br></br>
