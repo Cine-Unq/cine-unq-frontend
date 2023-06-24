@@ -10,16 +10,11 @@ import InfoPurchasePage from "../pages/InfoPurchasePage";
 import InfoStateFunction from "../pages/InfoStateFunctions";
 import PaySuccess from "../pages/PaySuccess";
 import PayRejected from "../pages/PayRejected";
-import SeatLayout from "../pages/SeatLayout";
-import Ejemplo from "../pages/Ejemplo";
+import CreateSalaPage from "../pages/CreateSalaPage";
 const router = createBrowserRouter([
     {
-        path: "/a",
-        element: <SeatLayout />
-    },    
-    {
-        path: "/",
-        element: <Ejemplo />
+        path: "/create/sala",
+        element: <CreateSalaPage />
     },
     {
         path: "/movie/info/:idMovie",

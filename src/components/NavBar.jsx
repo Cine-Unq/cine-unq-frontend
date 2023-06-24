@@ -60,6 +60,8 @@ export default function NavBar({ isAdmin }) {
                                     <Link style={{color:'#EBB454'}} to={"/panel/scanner"} >Scanner</Link>
                                     <Nav.Link/>
                                     <Link style={{color:'#EBB454'}} to={"/panel/info/peliculas/funcion"} >Funciones</Link>
+                                    <Nav.Link/>
+                                    <Link style={{color:'#EBB454'}} to={"/create/sala"} >Crear sala</Link>
                                 </Nav>
                                 <Nav>
                                     <NavDropdown title={<BsFillPersonFill/>} id="collasible-nav-dropdown">

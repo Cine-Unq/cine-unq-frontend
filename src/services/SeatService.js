@@ -10,6 +10,12 @@ const getSeatsFromFunctionAdmin = (id) => {
     return fetchWithAuthentication('GET', `${API}/asientos/pelicula/funcion/${id}/admin`, {})
 }
 
+const saveLayoutSala = (sala) => {
+    //return fetchWithAuthentication('POST', `${API}/sala/crear`, sala) 
+    console.log(sala);
+    return Promise.resolve("");
+}
+
 
 const confirmSeats = (idCompra, idCliente, seats) => {
     const body = {
@@ -19,4 +25,4 @@ const confirmSeats = (idCompra, idCliente, seats) => {
     }
     return fetchWithAuthentication('POST', `${API}/asientos/pelicula/funcion`, body)
 }
-export { getSeatsFromFunction, confirmSeats, getSeatsFromFunctionAdmin }; 
+export { getSeatsFromFunction, confirmSeats, getSeatsFromFunctionAdmin, saveLayoutSala}; 
