@@ -51,16 +51,16 @@ export default function CreateSala() {
             {msgSalaSaveSuccessful ? <Alert variant='success' onClose={() => setMsgSalaSaveSuccessful(false)} dismissible> {msgSalaSaveSuccessful} </Alert>: <></>}
             <div style={{display: 'grid', justifyItems: 'center'}}>
                 <Form.Label style={{color: 'white'}}>Cantidad de Filas</Form.Label>
-                <Form.Control data-testid="input-usuario" type="email" placeholder="Ingrese su usuario" onChange={({target}) => setCantRows(target.value)} autoComplete="on" />
+                <Form.Control type="email" placeholder="Ingrese cantidad de filas" onChange={({target}) => setCantRows(target.value)} autoComplete="on" />
                 <Form.Label style={{color: 'white'}}>Cantidad de Columnas </Form.Label>
-                <Form.Control data-testid="input-usuario" type="email" placeholder="Ingrese su usuario" onChange={({target}) => setCantColumns(target.value)} autoComplete="on" />
+                <Form.Control type="email" placeholder="Ingrese cantidad de columnas" onChange={({target}) => setCantColumns(target.value)} autoComplete="on" />
                 <br></br>
             </div>
-            <Button data-testid="boton-sesion" variant="primary" onClick={createMatrix} >
+            <Button variant="primary" onClick={createMatrix} >
                 Crear sala
             </Button>
             <br></br>
-            <Button data-testid="boton-sesion" variant="secondary" onClick={()=>setMatrix([])} >
+            <Button variant="secondary" onClick={()=>setMatrix([])} >
                 Borrar sala
             </Button>
             <br></br>
@@ -70,7 +70,7 @@ export default function CreateSala() {
                 matrix.length < 1?
                     <></>
                     :
-                    <Button data-testid="boton-sesion" variant="primary" onClick={saveSala} >
+                    <Button variant="primary" onClick={saveSala} >
                         Guardar Sala creada
                     </Button>
             }
