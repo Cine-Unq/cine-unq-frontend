@@ -17,7 +17,7 @@ export default function ModalConfirmCreateFunction({ movie, sala, time, onClose,
 
     return (
         <>
-            <Modal show={true} onHide={onClose}>
+            <Modal data-testid='modal-confirmacion-creacion-funcion' show={true} onHide={onClose}>
                 {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
                 <Modal.Header>
                     <Modal.Title>Confirmar alta de una función </Modal.Title>
@@ -31,7 +31,7 @@ export default function ModalConfirmCreateFunction({ movie, sala, time, onClose,
                     <Button variant="secondary" onClick={onClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={handleConfirmCreateFunction}>
+                    <Button data-testid='confirmar-creacion-funcion' variant="primary" onClick={handleConfirmCreateFunction}>
                         Confirmar 
                     </Button>
                 </Modal.Footer>

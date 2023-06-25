@@ -86,7 +86,7 @@ export default function CreateFunction() {
 
     return (
         <div style={{display:"grid", justifyContent: 'center'}}  >
-            {msgSuccessCreate ? <Alert variant='success' onClose={() => setMsgSuccessCreate(false)} dismissible> {msgSuccessCreate} </Alert>: <></>}
+            {msgSuccessCreate ? <Alert data-testid='msg-creacion-funcion' variant='success' onClose={() => setMsgSuccessCreate(false)} dismissible> {msgSuccessCreate} </Alert>: <></>}
             {error ? <Alert  variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
             <div className="d-flex justify-content-center">
 
@@ -94,7 +94,7 @@ export default function CreateFunction() {
 
                 <div style={{width:400}}> 
                     <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Hora de la función</Form.Label>
-                    <Form.Control type="time" placeholder="Ingrese un nombre" onChange={({target}) => setTimeFunction(target.value)}/>
+                    <Form.Control data-testid='input-horario-funcion' type="time" placeholder="Ingrese un nombre" onChange={({target}) => setTimeFunction(target.value)}/>
                     <br></br>
                     <Form.Label style={{display:"flex", justifyContent:'center',color:'white',fontSize: 'large'}}>Seleccione una película</Form.Label>
                     <ListGroup>
@@ -102,7 +102,7 @@ export default function CreateFunction() {
                             movies.map((m) => {
                            
                                 return (
-                                    <ListGroup.Item data-testid='seleccion-pelicula-item' key={m.id} action active={m.active} onClick={() => handleSelectMovie(m)}>
+                                    <ListGroup.Item data-testid='seleccion-pelicula' key={m.id} action active={m.active} onClick={() => handleSelectMovie(m)}>
                                         {m.nombre}
                                     </ListGroup.Item> 
                                 )
@@ -114,7 +114,7 @@ export default function CreateFunction() {
                     {
                         salas.map((s,index) => {
                             return (
-                                <Accordion key={index}>
+                                <Accordion key={index} data-testid="seleccion-formato-funcion">
                                     <Accordion.Item eventKey="0">
                                         <Accordion.Header >{s.tipo}</Accordion.Header>
                                         <Accordion.Body>
@@ -123,7 +123,7 @@ export default function CreateFunction() {
                                                     s.salas.map((m) => {
                            
                                                         return (
-                                                            <ListGroup.Item  key={m.id} action active={m.active} onClick={() => handleSelectSala(m)}>
+                                                            <ListGroup.Item data-testid='seleccion-sala' key={m.id} action active={m.active} onClick={() => handleSelectSala(m)}>
                                                                 {m.nombre}
                                                             </ListGroup.Item> 
                                                         )
@@ -138,7 +138,7 @@ export default function CreateFunction() {
                     }
                     <br></br>
                     <div style={{display:"flex", justifyContent:'center'}}>
-                        <Button variant="primary" onClick={createFunction} >
+                        <Button data-testid='crear-funcion' variant="primary" onClick={createFunction} >
                     Crear función
                         </Button>
                     </div>

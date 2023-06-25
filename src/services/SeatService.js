@@ -219,7 +219,7 @@ const getSalas = () => {
             ]
         },
         {
-            "tipo": "2D",
+            "tipo": "3D",
             "salas": [
                 {
                     id:3,
