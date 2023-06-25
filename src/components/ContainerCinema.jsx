@@ -9,8 +9,7 @@ import { useParams } from 'react-router-dom';
 import PopUpError from './PopupError';
 
 export default function ContainerCinema() {
-    const [selectedSeats, setSelectedSeats] = useState([]);
-    const [seats, setSeats] = useState([]);
+    const [matrix, setMatrix] = useState([]);
     const [modal, setModal] = useState(false);
     const { idFunction } = useParams();
     const [showError, setShowError] = useState(false);
@@ -18,12 +17,7 @@ export default function ContainerCinema() {
     useEffect(()=>{
         getSeatsFromFunction(idFunction)
             .then(data => {
-                if (data.length > 0) {
-                    setSeats(data)
-                } else {
-                    setTextError("No existen asientos para esta funcion");
-                    setShowError(true)
-                }
+                setMatrix(createMatrixWithSeats(data));
             })
             .catch(err => {
                 setTextError(err.message);
@@ -31,29 +25,50 @@ export default function ContainerCinema() {
                 
             })
     }, []);
+    const createMatrixWithSeats = ({cantColumnas, cantFilas, asientos}) => {
+        let matrix = [];
+        for(let f=0; f < cantFilas; f++) {
+            matrix.push([]);
+            for(let c=0; c < cantColumnas; c++) {
+                matrix[f][c] = {
+                    "posFila":f,
+                    "posColumna":c,
+                    "estado": "NODISPONIBLE",
+                    "selected": false
+                };
+            }
+        }
+        asientos.forEach(a => {
+            matrix[a.posFila][a.posColumna] = {...a,selected:false};
+        });
+        return matrix;
+    } 
 
+    const selectedSeats = () => {
+        return matrix.flat(1).filter(s => s.selected)
+    }    
+    const renderSeatsSelected = () => {
+        return selectedSeats().map((seat,index)=> (<li data-testid='asientos-seleccionado' key={index}>Asiento {seat.nombre} </li>))
+    }
     const handleModal = () => {
         setModal(true);
     }
     return (
         <>
             {showError && <PopUpError body={textError} />}
-            {seats.length > 0 &&
+            {matrix.length > 0 &&
             <div className="App">
-                {modal ? <ModalConfirmPurchase idFunction={idFunction} seats={selectedSeats} onClose={()=> setModal(false)}/>: <></>}
+                {modal ? <ModalConfirmPurchase idFunction={idFunction} seats={selectedSeats()} onClose={()=> setModal(false)}/>: <></>}
                 <ShowCase />
                 <Cinema
-                    selectedSeats={selectedSeats}
-                    onSelectedSeatsChange={(selectedSeats) =>
-                        setSelectedSeats(selectedSeats)
-                    }
-                    seats={seats}
+                    matrix={matrix}
+                    updateMatrix={setMatrix}
                 />
                 <p className="info" style={{color: 'white'}}>
                 Has seleccionado <span className="count">{selectedSeats.length}</span> asientos.
                 </p>
                 <ul style={{color: 'white', padding: 10}}>
-                    {selectedSeats.map((selected)=> (<li data-testid='asientos-seleccionado' key={selected.id}>Silla columna {selected.columna} y fila {selected.fila} </li>))}
+                    {renderSeatsSelected()}
                 </ul>
                 <Button data-testid='boton-comprar-asientos' variant="primary" size="lg" onClick={handleModal}>
                 Comprar asientos
