@@ -41,10 +41,19 @@ export default function Cinema({ matrix, updateMatrix }) {
                         } else {
                             style = colorOfStateSeat(seat.estado);
                         }
-                        return (
-                            <div className="seat" key={index} style={style} onClick={() => changeStateSeat(seat)}>
-                            </div>
-                        )
+                        if (seat.estado === "NODISPONIBLE") {
+                            return (
+                                <div className="seat" key={index} style={style} onClick={() => changeStateSeat(seat)}>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div data-testid='asiento' className="seat" key={index} style={style} onClick={() => changeStateSeat(seat)}>
+                                </div>
+                            )
+
+                        }
+                            
                     })               
                 }
             </div>
