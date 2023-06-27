@@ -11,8 +11,8 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
     const handlePurchase = () => {
         setLoading(true);
         generateCompraMP(seats, idFunction)
-            .then(res => {
-                window.location.replace(res.link)
+            .then(() => {
+                // window.location.replace(res.link)
             })
             .catch(err => {
                 setError(err)
@@ -29,7 +29,7 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
                 <Modal.Body>
                     <p>{seats.length} asientos seleccionados :</p>
                     <ul style={{ color: 'black' }}>
-                        {seats.map((selected) => (<li data-testid='asientos-seleccionados-modal' key={selected.id + selected.fila}>Silla columna {selected.columna} y fila {selected.fila} </li>))}
+                        {seats.map((selected,index) => (<li data-testid='asientos-seleccionados-modal' key={index}>Silla columna {selected.posColumna} y fila {selected.posFila} </li>))}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>

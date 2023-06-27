@@ -14,9 +14,7 @@ const getFunctionsOfMovie = (id) => {
 };
 
 const createFunction = (movie,sala,time) => {
-    //return fetchWithAuthentication('POST', `${API}/funcion/crear`, body) 
-    const body = {movie:movie.id,sala:sala.id,time};
-    console.log(body);
-    return Promise.resolve(""); 
+    const body = {pelicula:movie.id,sala:sala.id,horaInicio:time.replace('T', ' ')};
+    return fetchWithAuthentication('POST', `${API}/funcion/`, body) 
 }
 export { getMovieById, getAllMovies, getFunctionsOfMovie, createFunction };
