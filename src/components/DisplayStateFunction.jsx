@@ -64,7 +64,7 @@ export default function DisplayStateFunction() {
         <>
             <h3 style={{textAlign: 'center', color: 'white'}}>Seleccione una pelicula y funcion para ver su estado</h3>
             <p></p>
-            <div className="d-flex justify-content-center">
+            <div style={{display: 'grid', justifyContent: 'center'}}>
                 <div style={{width:400}}>
                     {movies.length > 0 ? <h3 style={{textAlign: 'center', color: 'white'}}>Peliculas</h3>:<></>}
                     <ListGroup >
@@ -93,9 +93,9 @@ export default function DisplayStateFunction() {
                         }
                     </ListGroup>
                 </div>
+                <p></p>
+                {displaySeats && <DisplayStateSeats info={displaySeats}/>}
             </div>
-            <p></p>
-            {displaySeats && <DisplayStateSeats info={displaySeats}/>}
         </>
     );
 }

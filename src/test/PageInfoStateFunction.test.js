@@ -155,16 +155,17 @@ test('it display seats state from one function selected', async () => {
 
     const functionsAvailables = screen.getAllByTestId('seleccion-function-item');
 
-    const seatsFromFunction = [
-        {
-            "id": 113,
-            "estaLibre": false,
-            "estaReservado": false,
-            "estaOcupado": true,
-            "columna": "A",
-            "fila": "1"
-        }
-    ]
+    const seatsFromFunction = {
+        "cantFilas": 1,
+        "cantColumnas": 3,
+        "asientos": [
+            {
+                "posFila": 0,
+                "posColumna": 0,
+                "estado": "LIBRE",
+            }
+        ]
+    }
     getSeatsFromFunctionAdmin.mockResolvedValue(seatsFromFunction);
     await act(async () => {
         userEvent.click(functionsAvailables[0]);
