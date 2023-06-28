@@ -5,9 +5,9 @@ name: Build React App
 
 on:
   push:
-    branches: [ "modeloSeat" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "modeloSeat" ]
+    branches: [ "main" ]
 
 jobs:
   build:
