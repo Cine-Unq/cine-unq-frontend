@@ -9,6 +9,7 @@ export default function MovieCard({ movie }) {
         <>
             {navigate &&  <Navigate to={`/movie/info/${navigate}`} replace={true}/>}
             <Card
+                data-testid='pelicula-en-cartelera'
                 style={{
                     width: "100%",
                     background: "#161616",
@@ -27,6 +28,7 @@ export default function MovieCard({ movie }) {
                         style={{ objectFit: "cover" }}
                     />
                     <Card.Title
+                        data-testid='mostrar-descripcion-pelicula'
                         onClick={() => {
                             setNavigate(movie.id)
                         }}

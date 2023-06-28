@@ -91,26 +91,13 @@
   border-radius: 100%;
   background: transparent;
   border: 1px solid #7bc47f;
-  animation: show-off 0.8s;
   visibility: hidden;
 }
 
-@keyframes show-off {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
-  }
 
-  100% {
-    transform: scale(3);
-    opacity: 0;
-  }
-}
 
 .seat {
   display: inline-block;
-  background: #fbf6f6;
   width: 22px;
   height: 18px;
   border-top-left-radius: 10px;
@@ -119,6 +106,10 @@
 
   position: relative;
   top: 1px;
+}
+
+.seat.libre {
+  background: white !important;
 }
 
 .seat.selected {
@@ -163,4 +154,18 @@
 
 .confirmacion li {
   margin: 0 8px;
+}
+
+@media (max-width: 576px){
+  .seat {
+    width: 19px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 426px){
+  .seat {
+    width: 16px;
+    height: 13px;
+  }
 }

@@ -22,7 +22,7 @@ export default function ListMovie() {
     },[]) 
     return (
         <>
-            <PopUpError showPopupError={showError} body={textError} />
+            { showError && <PopUpError body={textError} />}
             { movies.length > 0 && <Container className='mt-4'>
                 <h1 style={{color: '#4bbad8'}}>Cartelera</h1>
                 <p></p>

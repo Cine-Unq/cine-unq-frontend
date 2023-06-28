@@ -1,29 +1,23 @@
-const body = {
-    pelicula: "Avengers",
-    funcion : "12:30",
-    asientos : [
-        { 
-            id:10,
-            fila:1,
-            columna:'H',
-            estado:'RESERVADO'
-        },
-        { 
-            id:20,
-            fila:2,
-            columna:'G',
-            estado: 'RESERVADO'
-        },
-        { 
-            id:30,
-            fila:3,
-            columna:'I',
-            estado: 'OCUPADO'
-        }
-    ]
-}
-const getInfoPurchase = () => {
-    return Promise.resolve(body); 
+import { fetchWithAuthentication } from "./utils";
+const API = 'http://localhost:8080';
+
+const getPurchase = (id) => {
+    return fetchWithAuthentication('GET',`${API}/compra/${id}`, {})
 }
 
-export { getInfoPurchase }
+const generateCompraMP = (seats, idFunction ) => {    
+    if (!seats || seats.length == 0) {
+        return Promise.reject("Para generar la compra debe seleccionar al menos 1 asiento");
+    }
+    const purchase = {
+        idCliente: 1,
+        idsAsientos: seats.map(data => data.id),
+        idFuncion: idFunction
+    }
+    return fetchWithAuthentication('POST',`${API}/mp/createAndRedirect`,purchase)
+}
+
+const confirmPayedPurchase = (id) => {
+    return fetchWithAuthentication('PUT',`${API}/compra/${id}`, {})
+}
+export { getPurchase, generateCompraMP, confirmPayedPurchase }

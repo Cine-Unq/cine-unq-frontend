@@ -38,7 +38,7 @@ export default function NavBar({ isAdmin }) {
                                 </Nav>
                                 <Nav>
                                     <NavDropdown title={<BsFillPersonFill/>} id="collasible-nav-dropdown">
-                                        <NavDropdown.Item onClick={closeSession}>cerrar session</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={closeSession}>cerrar sesión</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                             </Navbar.Collapse>
@@ -60,6 +60,10 @@ export default function NavBar({ isAdmin }) {
                                     <Link style={{color:'#EBB454'}} to={"/panel/scanner"} >Scanner</Link>
                                     <Nav.Link/>
                                     <Link style={{color:'#EBB454'}} to={"/panel/info/peliculas/funcion"} >Funciones</Link>
+                                    <Nav.Link/>
+                                    <Link style={{color:'#EBB454'}} to={"/create/sala"} >Crear sala</Link>
+                                    <Nav.Link/>
+                                    <Link style={{color:'#EBB454'}} to={"/create/function"} >Agregar funcion</Link>
                                 </Nav>
                                 <Nav>
                                     <NavDropdown title={<BsFillPersonFill/>} id="collasible-nav-dropdown">

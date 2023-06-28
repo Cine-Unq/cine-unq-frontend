@@ -4,7 +4,7 @@ import MovieInfo from '../components/MovieInfo';
 
 export default function MoviePage() {
     return (
-        <Container fluid style={{padding:0, margin:0}}>
+        <Container data-testid="pagina-descripcion-pelicula" fluid style={{padding:0, margin:0}}>
             <NavBar isAdmin={false}></NavBar>
             <MovieInfo ></MovieInfo>
         </Container>
