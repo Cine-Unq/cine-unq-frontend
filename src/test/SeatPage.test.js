@@ -181,16 +181,6 @@ test('i make a purchase and redirect to Mercadopago', async () => {
                 "posFila": 0,
                 "posColumna": 0,
                 "estado": "LIBRE",
-            },
-            {
-                "posFila": 0,
-                "posColumna": 1,
-                "estado": "LIBRE",
-            },
-            {
-                "posFila": 0,
-                "posColumna": 2,
-                "estado": "LIBRE",
             }
         ]
     }
@@ -205,7 +195,7 @@ test('i make a purchase and redirect to Mercadopago', async () => {
         }
     ];
     const router = createMemoryRouter(routes, {
-        initialEntries: ["/",""],
+        initialEntries: ["/"],
         initialIndex: 0,
     });
 

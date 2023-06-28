@@ -14,6 +14,7 @@ export default function CreateFunction() {
     const [salaSelected, setSalaSelected] = useState([]);
     const [movieSelected, setMovieSelected] = useState([]);
     const [timeFunction, setTimeFunction] = useState(false);
+    const [dateFunction, setDateFunction] = useState(false);
     const [modal, setModal] = useState(false);
     const [error, setError] = useState(false);
     const [msgSuccessCreate, setMsgSuccessCreate] = useState();
@@ -56,6 +57,10 @@ export default function CreateFunction() {
     }
 
     const createFunction = () => {
+        if (!dateFunction) {
+            setError("No se definio una fecha");
+            return;
+        }
         if (!timeFunction) {
             setError("No se definio un horario");
             return;
@@ -90,11 +95,14 @@ export default function CreateFunction() {
             {error ? <Alert  variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
             <div className="d-flex justify-content-center">
 
-                {modal ? <ModalConfirmCreateFunction movie={movieSelected} sala={salaSelected} time={timeFunction} successCreate={successCreate}onClose={()=> setModal(false)}/>: <></>}
+                {modal ? <ModalConfirmCreateFunction movie={movieSelected} sala={salaSelected} time={timeFunction} day={dateFunction} successCreate={successCreate}onClose={()=> setModal(false)}/>: <></>}
 
                 <div style={{width:400}}> 
+                    <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Dia de la función</Form.Label>
+                    <Form.Control data-testid='input-dia-funcion' type="date"  onChange={({target}) => setDateFunction(target.value)}/>
+                    <br></br>
                     <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Hora de la función</Form.Label>
-                    <Form.Control data-testid='input-horario-funcion' type="datetime-local" placeholder="Ingrese un nombre" onChange={({target}) => setTimeFunction(target.value)}/>
+                    <Form.Control data-testid='input-horario-funcion' type="time"  onChange={({target}) => setTimeFunction(target.value)}/>
                     <br></br>
                     <Form.Label style={{display:"flex", justifyContent:'center',color:'white',fontSize: 'large'}}>Seleccione una película</Form.Label>
                     <ListGroup>
@@ -123,7 +131,9 @@ export default function CreateFunction() {
                                                     s.salas.map((m) => {
                            
                                                         return (
-                                                            <ListGroup.Item data-testid='seleccion-sala' key={m.id} action active={m.active} onClick={() => handleSelectSala(m)}>
+                                                            <ListGroup.Item data-testid='seleccion-sala' key={m.id} action active={m.active} onClick={() => {
+                                                                handleSelectSala(m)
+                                                            }}>
                                                                 {m.nombre}
                                                             </ListGroup.Item> 
                                                         )

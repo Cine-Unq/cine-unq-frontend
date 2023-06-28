@@ -13,8 +13,8 @@ const getFunctionsOfMovie = (id) => {
     return fetchWithAuthentication('GET',`${API}/funcion/${id}`, {})
 };
 
-const createFunction = (movie,sala,time) => {
-    const body = {pelicula:movie.id,sala:sala.id,horaInicio:time.replace('T', ' ')};
+const createFunction = (movie,sala,time, day) => {
+    const body = {pelicula:movie.id,sala:sala.id,horaInicio:`${day} ${time}`};
     return fetchWithAuthentication('POST', `${API}/funcion/`, body) 
 }
 export { getMovieById, getAllMovies, getFunctionsOfMovie, createFunction };

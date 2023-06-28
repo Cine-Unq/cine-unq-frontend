@@ -11,8 +11,8 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
     const handlePurchase = () => {
         setLoading(true);
         generateCompraMP(seats, idFunction)
-            .then(() => {
-                // window.location.replace(res.link)
+            .then((res) => {
+                window.location.replace(res.link)
             })
             .catch(err => {
                 setError(err)
@@ -40,7 +40,7 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
                         <Button data-testid='buton-compra-modal-confirm' variant="primary" onClick={handlePurchase}>
                             Comprar
                         </Button> :
-                        <Button data-testid='buton-compra-modal-confirm' variant="primary" onClick={handlePurchase}>
+                        <Button data-testid='buton-cancelar-modal-confirm' variant="primary" onClick={handlePurchase}>
                             cargando...
                         </Button>
                     }

@@ -48,7 +48,7 @@ export default function ContainerCinema() {
         return matrix.flat(1).filter(s => s.selected)
     }    
     const renderSeatsSelected = () => {
-        return selectedSeats().map((seat,index)=> (<li data-testid='asientos-seleccionado' key={index + seat.id}>Asiento {seat.nombre} </li>))
+        return selectedSeats().map((seat,index)=> (<li data-testid='asientos-seleccionado' key={index}>Asiento {seat.nombre} </li>))
     }
     const handleModal = () => {
         setModal(true);

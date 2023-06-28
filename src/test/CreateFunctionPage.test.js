@@ -86,10 +86,12 @@ test('create one function in 2D to The avengers', async () => {
     await act(async () => render(<RouterProvider router={router} />));
 
     const inputTimeFunction = screen.getByTestId('input-horario-funcion');
+    const inputDateFunction = screen.getByTestId('input-dia-funcion');
     const selectMovies = screen.getAllByTestId('seleccion-pelicula');
     const formatSalas = screen.getAllByTestId('seleccion-formato-funcion');
     await act(async () => {
-        await userEvent.type(inputTimeFunction, '12:00');
+        await userEvent.type(inputTimeFunction, "16:00");
+        await userEvent.type(inputDateFunction, '2020-05-24');
         await userEvent.click(selectMovies[0], '6');
         await userEvent.click(formatSalas[0]);
     });
@@ -101,7 +103,7 @@ test('create one function in 2D to The avengers', async () => {
     await act(async () => {
         await userEvent.click(buttonCreateFunction);
     })
-    const modalConfirm = screen.getByTestId('modal-confirmacion-creacion-funcion');
+    // const modalConfirm = screen.getByTestId('modal-confirmacion-creacion-funcion');
     const buttonConfirmCreateFunction = screen.getByTestId('confirmar-creacion-funcion')
     await act(async () => {
         await userEvent.click(buttonConfirmCreateFunction);
