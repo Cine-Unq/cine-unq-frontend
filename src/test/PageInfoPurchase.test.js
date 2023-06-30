@@ -39,33 +39,38 @@ test('display information of purchase with 5 seats reserved', async () => {
         "asientosReservados": [
             {
                 "id": 1,
-                "estado": "RESERVADO",
-                "columna": "A",
-                "fila": "1"
+                "letter": "A",
+                "posColumna": 0,
+                "posFila": 0,
+                "estado": "RESERVADO"
             },
             {
                 "id": 2,
-                "estado": "RESERVADO",
-                "columna": "A",
-                "fila": "2"
+                "letter": "C",
+                "posColumna": 0,
+                "posFila": 2,
+                "estado": "RESERVADO"
             },
             {
                 "id": 3,
-                "estado": "RESERVADO",
-                "columna": "A",
-                "fila": "3"
+                "letter": "D",
+                "posColumna": 0,
+                "posFila": 3,
+                "estado": "RESERVADO"
             },
             {
                 "id": 4,
-                "estado": "RESERVADO",
-                "columna": "A",
-                "fila": "4"
+                "letter": "F",
+                "posColumna": 0,
+                "posFila": 5,
+                "estado": "RESERVADO"
             },
             {
                 "id": 5,
-                "estado": "RESERVADO",
-                "columna": "B",
-                "fila": "1"
+                "letter": "A",
+                "posColumna": 1,
+                "posFila": 0,
+                "estado": "RESERVADO"
             }
         ],
         "asientosOcupados": [],
@@ -77,11 +82,11 @@ test('display information of purchase with 5 seats reserved', async () => {
     const seatsOfPurchase = screen.getAllByTestId('asiento-info');
 
     expect(seatsOfPurchase).toHaveLength(5);
-    expect(seatsOfPurchase[0].textContent).toEqual('Asiento 1 A')
-    expect(seatsOfPurchase[1].textContent).toEqual('Asiento 2 A')
-    expect(seatsOfPurchase[2].textContent).toEqual('Asiento 3 A')
-    expect(seatsOfPurchase[3].textContent).toEqual('Asiento 4 A')
-    expect(seatsOfPurchase[4].textContent).toEqual('Asiento 1 B')
+    expect(seatsOfPurchase[0].textContent).toEqual('Asiento A1 ')
+    expect(seatsOfPurchase[1].textContent).toEqual('Asiento C1 ')
+    expect(seatsOfPurchase[2].textContent).toEqual('Asiento D1 ')
+    expect(seatsOfPurchase[3].textContent).toEqual('Asiento F1 ')
+    expect(seatsOfPurchase[4].textContent).toEqual('Asiento A2 ')
 
 })
 
