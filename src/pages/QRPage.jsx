@@ -31,7 +31,7 @@ export default function QRPage() {
                             <h4>Sala : {purchase.sala}</h4>   
                             <h4>Pelicula : {purchase.pelicula}</h4>   
                             <h4>Horario función : {purchase.funcion}</h4>
-                            <h4>Cantidad de asientos comprados : {purchase.asientosReservados.length}</h4>   
+                            <h4>Asientos comprados : {purchase.asientosReservados.map(seat => `${seat.letter}${seat.posColumna + 1}`).join(",")}</h4>   
                         </div>
                         <div style={{display:'grid', justifyContent: 'center'}}>
                             <div style={{ display:'flex', justifyContent: 'center', background: 'white', padding: 10, width: '300px'}}>
