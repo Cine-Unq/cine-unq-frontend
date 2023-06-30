@@ -18,6 +18,6 @@ const loginUser = ( email, password) => {
             }
             return Promise.reject({message: "email o contraseña incorrectos"})
         })
-        .catch(err => err instanceof Error ? Promise.reject({message: '500 Internal Server Error' }) : Promise.reject(err))
+        .catch(err => err instanceof Error ? Promise.reject({message: 'La Página no se encuentra disponible en estos momentos' }) : Promise.reject(err))
 }
 export { loginUser };
