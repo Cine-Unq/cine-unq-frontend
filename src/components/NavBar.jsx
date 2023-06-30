@@ -30,15 +30,15 @@ export default function NavBar({ isAdmin }) {
                                 height="100"
                                 className="d-inline-block align-top"
                             />
-                            <Navbar.Brand style={{color:'#EBB454'}}>CINE.UNQ</Navbar.Brand>
+                            <Navbar.Brand style={{ color: '#EBB454' }}>CINE.UNQ</Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                             <Navbar.Collapse id="responsive-navbar-nav">
                                 <Nav className="me-auto">
-                                    <Link style={{color:'#EBB454'}} to={"/billboard/movies"} >Home</Link>
+                                    <Link style={{ color: '#EBB454' }} to={"/billboard/movies"} >Home</Link>
                                 </Nav>
                                 <Nav>
-                                    <NavDropdown title={<BsFillPersonFill/>} id="collasible-nav-dropdown">
-                                        <NavDropdown.Item onClick={closeSession}>cerrar sesión</NavDropdown.Item>
+                                    <NavDropdown title={<BsFillPersonFill />} id="collasible-nav-dropdown">
+                                        <NavDropdown.Item onClick={closeSession}>Cerrar sesión</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                             </Navbar.Collapse>
@@ -53,28 +53,28 @@ export default function NavBar({ isAdmin }) {
                                 height="100"
                                 className="d-inline-block align-top"
                             />
-                            <Navbar.Brand style={{color:'#EBB454'}}>CINE.UNQ</Navbar.Brand>
+                            <Navbar.Brand style={{ color: '#EBB454' }}>CINE.UNQ</Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                             <Navbar.Collapse id="responsive-navbar-nav">
                                 <Nav className="me-auto">
-                                    <Link style={{color:'#EBB454'}} to={"/panel/scanner"} >Scanner</Link>
-                                    <Nav.Link/>
-                                    <Link style={{color:'#EBB454'}} to={"/panel/info/peliculas/funcion"} >Funciones</Link>
-                                    <Nav.Link/>
-                                    <Link style={{color:'#EBB454'}} to={"/create/sala"} >Crear sala</Link>
-                                    <Nav.Link/>
-                                    <Link style={{color:'#EBB454'}} to={"/create/function"} >Agregar funcion</Link>
+                                    <Link style={{ color: '#EBB454' }} to={"/panel/scanner"} >Scanner</Link>
+                                    <Nav.Link />
+                                    <Link style={{ color: '#EBB454' }} to={"/panel/info/peliculas/funcion"} >Funciones</Link>
+                                    <Nav.Link />
+                                    <Link style={{ color: '#EBB454' }} to={"/create/sala"} >Crear sala</Link>
+                                    <Nav.Link />
+                                    <Link style={{ color: '#EBB454' }} to={"/create/function"} >Agregar función</Link>
                                 </Nav>
                                 <Nav>
-                                    <NavDropdown title={<BsFillPersonFill/>} id="collasible-nav-dropdown">
-                                        <NavDropdown.Item onClick={closeSession}>Cerrar session</NavDropdown.Item>
+                                    <NavDropdown title={<BsFillPersonFill />} id="collasible-nav-dropdown">
+                                        <NavDropdown.Item onClick={closeSession}>Cerrar sesión</NavDropdown.Item>
                                     </NavDropdown>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
-                    </Navbar> 
+                    </Navbar>
             }
-            
+
         </>
     )
 } 

@@ -82,8 +82,8 @@ export default function ListSeatsReserved() {
                 purchase && seats &&
             <>
                 <p></p>
-                <h2 style={{textAlign: 'center'}}>Pelicula : {purchase.pelicula}</h2>
-                <h2 style={{textAlign: 'center'}}>Funcion : {purchase.funcion}</h2>
+                <h2 style={{textAlign: 'center'}}>Película : {purchase.pelicula}</h2>
+                <h2 style={{textAlign: 'center'}}>Función : {purchase.funcion}</h2>
                 <h2 style={{textAlign: 'center'}}>Asientos reservados :</h2>
                 <div className="d-flex justify-content-center">
                     <ul className="confirmacion">

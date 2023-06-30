@@ -98,7 +98,7 @@ export default function CreateFunction() {
                 {modal ? <ModalConfirmCreateFunction movie={movieSelected} sala={salaSelected} time={timeFunction} day={dateFunction} successCreate={successCreate}onClose={()=> setModal(false)}/>: <></>}
 
                 <div style={{width:400}}> 
-                    <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Dia de la función</Form.Label>
+                    <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Día de la función</Form.Label>
                     <Form.Control data-testid='input-dia-funcion' type="date"  onChange={({target}) => setDateFunction(target.value)}/>
                     <br></br>
                     <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Hora de la función</Form.Label>
