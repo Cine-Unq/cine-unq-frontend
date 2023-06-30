@@ -12,6 +12,7 @@ import PaySuccess from "../pages/PaySuccess";
 import PayRejected from "../pages/PayRejected";
 import CreateSalaPage from "../pages/CreateSalaPage";
 import CreateFunctionPage from "../pages/CreateFunctionPage";
+import NotFound from "../components/NotFound";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -92,6 +93,11 @@ const router = createBrowserRouter([
         element:
             <PayRejected />
     },
+    {
+        path: "*",
+        element:
+            <NotFound></NotFound>
+    }
 ]);
 
 export default function Router() {
