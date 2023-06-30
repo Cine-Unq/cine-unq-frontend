@@ -40,4 +40,9 @@ const isAdmin = () => {
     const { rol } = jwt_decode(getToken());
     return rol.some(r => r.authority === 'ADMIN')
 }
-export { fetchWithAuthentication, handleRequestResponse, handleErrorRequestResponse, getToken, login, logout, isAdmin }
+
+const getIdCliente = () => {
+    const { id } = jwt_decode(getToken());
+    return id;
+}
+export { fetchWithAuthentication, handleRequestResponse, handleErrorRequestResponse, getToken, login, logout, isAdmin, getIdCliente }

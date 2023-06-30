@@ -19,11 +19,17 @@ const router = createBrowserRouter([
     },
     {
         path: "/create/sala",
-        element: <CreateSalaPage />
+        element: 
+        <Authentication roles={["USER", "ADMIN"]}>
+            <CreateSalaPage />
+        </Authentication>,
     },
     {
         path: "/create/function",
-        element: <CreateFunctionPage />
+        element: 
+        <Authentication roles={["USER", "ADMIN"]}>
+            <CreateFunctionPage />
+        </Authentication>,
     },
     {
         path: "/movie/info/:idMovie",

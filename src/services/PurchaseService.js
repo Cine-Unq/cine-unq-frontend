@@ -1,4 +1,4 @@
-import { fetchWithAuthentication } from "./utils";
+import { fetchWithAuthentication, getIdCliente } from "./utils";
 const API = 'http://localhost:8080';
 
 const getPurchase = (id) => {
@@ -9,8 +9,9 @@ const generateCompraMP = (seats, idFunction ) => {
     if (!seats || seats.length == 0) {
         return Promise.reject("Para generar la compra debe seleccionar al menos 1 asiento");
     }
+
     const purchase = {
-        idCliente: 1,
+        idCliente: getIdCliente(),
         idsAsientos: seats.map(data => data.id),
         idFuncion: idFunction
     }
