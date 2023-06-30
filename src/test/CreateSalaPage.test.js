@@ -59,6 +59,10 @@ test('create one sala and save', async () => {
     await act(async () => {
         await userEvent.click(buttonSaveSala);
     })
+    const confirm = screen.getByTestId("confirmar-creacion-sala");
+    await act(async () => {
+        await userEvent.click(confirm);
+    })
     const msgSuccessfull = screen.getByTestId('msg-sala-creada');
     expect(msgSuccessfull).toHaveTextContent('Se guardo correctamente la sala')
 }) 

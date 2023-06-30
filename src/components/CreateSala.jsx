@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CreateLayout from './CreateLayout';
 import Alert from 'react-bootstrap/Alert';
 import { saveLayoutSala } from '../services/SeatService';
+import ConfirmCreateSala from './ConfirmCreateSala';
 
 export default function CreateSala() {
     const [matrix,setMatrix] = useState([]);
@@ -13,7 +14,7 @@ export default function CreateSala() {
     const [tipoSala, setTipoSala] = useState(false);
     const [nameSala, setNameSala] = useState(false);
     const [msgSalaSaveSuccessful, setMsgSalaSaveSuccessful] = useState(false);
-
+    const [confirm,setConfirm] = useState(false);
     const createMatrix = () => {
         if (cantColumns  > 0 && cantColumns  < 30 && cantRows > 0 && cantRows < 30) {
             let matriz = [];
@@ -54,6 +55,7 @@ export default function CreateSala() {
     return (
         <div style={{display: 'grid', justifyItems: 'center'}}>
             {error ? <Alert variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
+            {confirm ? <ConfirmCreateSala confirm={saveSala} close={() => setConfirm(false)}></ConfirmCreateSala> : <></>}
             {msgSalaSaveSuccessful ? <Alert data-testid='msg-sala-creada' variant='success' onClose={() => setMsgSalaSaveSuccessful(false)} dismissible> {msgSalaSaveSuccessful} </Alert>: <></>}
             <div style={{display: 'grid', justifyItems: 'center'}}>
                 <Form.Label style={{color: 'white', fontSize:'large'}}>Nombre de la Sala</Form.Label>
@@ -90,7 +92,7 @@ export default function CreateSala() {
                 matrix.length < 1?
                     <></>
                     :
-                    <Button data-testid='boton-guardar-sala' variant="primary" onClick={saveSala} >
+                    <Button data-testid='boton-guardar-sala' variant="primary" onClick={()=>setConfirm(true)} >
                         Guardar Sala creada
                     </Button>
             }
