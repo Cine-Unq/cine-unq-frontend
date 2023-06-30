@@ -29,7 +29,7 @@ export default function ModalConfirmPurchase({ onClose, seats, idFunction }) {
                 <Modal.Body>
                     <p>{seats.length} asientos seleccionados :</p>
                     <ul style={{ color: 'black' }}>
-                        {seats.map((selected,index) => (<li data-testid='asientos-seleccionados-modal' key={index}>Silla columna {selected.posColumna} y fila {selected.posFila} </li>))}
+                        {seats.map((selected,index) => (<li data-testid='asientos-seleccionados-modal' key={index}>Asiento {`${selected.letter}${selected.posColumna + 1} `}</li>))}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>

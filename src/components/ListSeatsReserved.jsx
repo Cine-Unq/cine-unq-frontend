@@ -88,7 +88,7 @@ export default function ListSeatsReserved() {
                 <div className="d-flex justify-content-center">
                     <ul className="confirmacion">
                         <li>
-                            <span className="seat"/> <small>Sin confirmar</small>
+                            <span className="seat" style={{background:'white'}}/> <small>Sin confirmar</small>
                         </li>
                         <li>
                             <span className="seat" style={{background:'green'}}/> <small>Confirmado</small>
@@ -105,7 +105,7 @@ export default function ListSeatsReserved() {
                                 <Card data-testid='asiento-info' key={asiento.id} style={{background: asiento.style, marginBottom:10}} onClick={() => selectSeat(asiento)}>
                                     <Card.Img variant="top" src={Seat} />
                                     <Card.Body>
-                                        <Card.Title>Asiento {asiento.fila} {asiento.columna}</Card.Title>
+                                        <Card.Title>Asiento {`${asiento.letter}${asiento.posColumna + 1}`} </Card.Title>
                                     </Card.Body>
                                 </Card>
                             )
