@@ -32,7 +32,7 @@ export default function ModalConfirmSeat({ onClose, seats, idCompra, idCliente, 
                 <Modal.Body>
                     <p> Asientos seleccionados : {seats.length}</p>
                     <ul style={{color: 'black'}}>
-                        {seats.map((selected)=> (<li key={selected.id + selected.fila}>Asiento {`${selected.letter}${selected.posColumna + 1}`} </li>))}
+                        {seats.map((selected,index)=> (<li key={index}>Asiento {`${selected.letter}${selected.posColumna + 1}`} </li>))}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>
