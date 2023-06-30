@@ -83,13 +83,6 @@ export default function Formulario() {
                                 Iniciar Sesion
                             </Button>
                         </div>
-                        <p></p>
-                        <p style={styles.text_create_account}>
-                            ¿Todavia no tenes cuenta?
-                            <a href="/" style={styles.link_create_account}>
-                                Crea una ahora
-                            </a>
-                        </p>
                     </Form>
                 </Col>
             </Row>
