@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { getAllMovies } from "../services/MovieService";
 import { getSalas } from "../services/SeatService";
@@ -18,6 +19,7 @@ export default function CreateFunction() {
     const [modal, setModal] = useState(false);
     const [error, setError] = useState(false);
     const [msgSuccessCreate, setMsgSuccessCreate] = useState();
+
 
     useEffect(() => {
         getAllMovies().
@@ -95,7 +97,7 @@ export default function CreateFunction() {
             {error ? <Alert  variant='danger' onClose={() => setError(false)} dismissible> {error} </Alert>: <></>}
             <div className="d-flex justify-content-center">
 
-                {modal ? <ModalConfirmCreateFunction movie={movieSelected} sala={salaSelected} time={timeFunction} day={dateFunction} successCreate={successCreate}onClose={()=> setModal(false)}/>: <></>}
+                {modal ? <ModalConfirmCreateFunction movie={movieSelected} sala={salaSelected} time={timeFunction} day={dateFunction} successCreate={successCreate} onClose={()=> setModal(false)} setErrorr={setError}/>: <></>}
 
                 <div style={{width:400}}> 
                     <Form.Label  style={{display:"flex", justifyContent:'center',color: 'white',fontSize: 'large'}}>Día de la función</Form.Label>

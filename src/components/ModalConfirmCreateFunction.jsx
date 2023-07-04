@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react"; 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import { createFunction } from "../services/MovieService";
-export default function ModalConfirmCreateFunction({ movie, sala, time, day, onClose, successCreate}) {
+
+
+export default function ModalConfirmCreateFunction({ movie, sala, time, day, onClose, successCreate,setErrorr}) {
     const [error, setError] = useState(false);
 
     const handleConfirmCreateFunction = () => {
@@ -12,7 +15,10 @@ export default function ModalConfirmCreateFunction({ movie, sala, time, day, onC
                 onClose(true);
                 successCreate("Se creo exitosamente la función");
             })
-            .catch(err=> setError(err))
+            .catch(err => {
+                onClose(true);
+                setErrorr(err.message);
+            })
     }
 
     return (
