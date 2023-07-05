@@ -1,15 +1,15 @@
 export default function CreateLayout({ matrix, updateMatrix }) {
     const changeStateSeat = (seat) => {
         let newMatrix = []
-        for (let f = 0; f < matrix.length; f++) {
+        for (let row = 0; row < matrix.length; row++) {
             newMatrix.push([]);
-            for (let c = 0; c < matrix[0].length; c++) {
-                if (matrix[f][c].id === seat.id) {
+            for (let column = 0; column < matrix[0].length; column++) {
+                if (matrix[row][column].id === seat.id) {
                     const { id, fila, columna, active } = seat;
                     const state = !active;
-                    newMatrix[f][c] = { id: id, fila: fila, columna: columna, active: state };
+                    newMatrix[row][column] = { id: id, fila: fila, columna: columna, active: state };
                 } else {
-                    newMatrix[f][c] = matrix[f][c];
+                    newMatrix[row][column] = matrix[row][column];
                 }
             }
         }

@@ -11,19 +11,19 @@ export default function DisplayStateSeats({ info }) {
 
     const createMatrixWithSeats = ({ cantColumnas, cantFilas, asientos }) => {
         let matrix = [];
-        for (let f = 0; f < cantFilas; f++) {
+        for (let row = 0; row < cantFilas; row++) {
             matrix.push([]);
-            for (let c = 0; c < cantColumnas; c++) {
-                matrix[f][c] = {
-                    "posFila": f,
-                    "posColumna": c,
+            for (let column = 0; column < cantColumnas; column++) {
+                matrix[row][column] = {
+                    "posFila": row,
+                    "posColumna": column,
                     "estado": "NODISPONIBLE",
                     "selected": false
                 };
             }
         }
-        asientos.forEach(a => {
-            matrix[a.posFila][a.posColumna] = { ...a, selected: false };
+        asientos.forEach(seat => {
+            matrix[seat.posFila][seat.posColumna] = { ...seat, selected: false };
         });
         return matrix;
     }

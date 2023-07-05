@@ -19,12 +19,12 @@ export default function CreateSala() {
         if (cantColumns  > 0 && cantColumns  < 30 && cantRows > 0 && cantRows < 30) {
             let matriz = [];
             let contador = 0;
-            for(let f=0; f < cantRows; f++) {
+            for(let row=0; row < cantRows; row++) {
                 matriz.push([]);
-                for(let c=0; c < cantColumns; c++) {
-                    matriz[f][c] = {
-                        fila: f,
-                        columna: c,
+                for(let column=0; column < cantColumns; column++) {
+                    matriz[row][column] = {
+                        fila: row,
+                        columna: column,
                         id:contador,
                         active: true
                     }
@@ -41,10 +41,10 @@ export default function CreateSala() {
             setError("Se debe definir un nombre para la sala");
         } else if (!tipoSala) {
             setError("Se debe definir el tipo de la sala");
-        } else if (matrix.length > 0 || matrix.flat(1).filter(s => s.active).length === 0) {
+        } else if (matrix.length > 0 || matrix.flat(1).filter(seat => seat.active).length === 0) {
             const rows = matrix.length;
             const columns = matrix[0].length;
-            const seats = matrix.flat(1).filter(s => s.active).map(seat => ({fila:seat.fila,columna:seat.columna}))
+            const seats = matrix.flat(1).filter(seat => seat.active).map(seat => ({fila:seat.fila,columna:seat.columna}))
             saveLayoutSala({rows,columns,seats, name: nameSala, tipoSala})
                 .then(() => setMsgSalaSaveSuccessful("Se guardo correctamente la sala"))
                 .catch(() => setError("No se pudo guardar la sala creada"));
