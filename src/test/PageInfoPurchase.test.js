@@ -262,6 +262,6 @@ test('selected 2 seats of purchase and click button confirm seats and update sea
 
     seatsOfPurchase = screen.getAllByTestId('asiento-info');
     
-    expect(seatsOfPurchase[0]).toHaveStyle({ background: 'green', marginBottom: 10 });
-    expect(seatsOfPurchase[1]).toHaveStyle({ background: 'green', marginBottom: 10 });
+    expect(seatsOfPurchase[0]).toHaveStyle({ background: '#2cef2c', marginBottom: 10 });
+    expect(seatsOfPurchase[1]).toHaveStyle({ background: '#2cef2c', marginBottom: 10 });
 })
